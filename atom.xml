@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-30T10:29:28.470Z</updated>
+  <updated>2018-08-30T13:16:25.993Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用github+hexo快速搭建个人博客</title>
+    <link href="http://yoursite.com/2018/08/30/%E4%BD%BF%E7%94%A8github-hexo%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2018/08/30/使用github-hexo快速搭建个人博客/</id>
+    <published>2018-08-30T13:10:19.000Z</published>
+    <updated>2018-08-30T13:16:25.993Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ol><li>node.js的安装</li><li>git的安装</li><li>在github注册账号并创建一个仓库</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;环境搭建&quot;&gt;&lt;a href=&quot;#环境搭建&quot; class=&quot;headerlink&quot; title=&quot;环境搭建&quot;&gt;&lt;/a&gt;环境搭建&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;node.js的安装&lt;/li&gt;
+&lt;li&gt;git的安装&lt;/li&gt;
+&lt;li&gt;在github注册账号并创建一个仓库&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>第二篇文章</title>
