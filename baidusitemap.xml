@@ -4,30 +4,11 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/09/01/Django-xadmin%E6%89%93%E9%80%A0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/</loc>
-    <lastmod>2018-09-01T09:21:38.668Z</lastmod>
+    <loc>http://yoursite.com/2018/09/01/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0Mxonline-xadmin%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-09-01T14:34:09.234Z</lastmod>
     <data>
         <display>
-        <title>Django+xadmin打造在线教育平台-用户登录注册功能的实现</title>
-        <pubTime>2018-09-01T05:11:33.000Z</pubTime>
-        
-        <tag>django项目</tag>
-         
-        <tag>Mxonline</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/09/01/Django-xadmin%E6%89%93%E9%80%A0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0-xadmin%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-09-01T08:50:28.855Z</lastmod>
-    <data>
-        <display>
-        <title>Django+xadmin打造在线教育平台-xadmin的使用</title>
+        <title>在线教育平台Mxonline-xadmin的使用</title>
         <pubTime>2018-09-01T05:10:09.000Z</pubTime>
         
         <tag>django项目</tag>
@@ -44,12 +25,31 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/09/01/Django+xadmin%E6%89%93%E9%80%A0%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0-django%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%92%8Cmodel%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2018-09-01T07:46:33.826Z</lastmod>
+    <loc>http://yoursite.com/2018/09/01/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0Mxonline-django%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%92%8Cmodel%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2018-09-01T13:44:50.730Z</lastmod>
     <data>
         <display>
-        <title>Django+xadmin打造在线教育平台-django基本设置和model设计</title>
+        <title>在线教育平台Mxonline-django基本设置和model设计</title>
         <pubTime>2018-09-01T05:09:09.000Z</pubTime>
+        
+        <tag>django项目</tag>
+         
+        <tag>Mxonline</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/01/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0Mxonline-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2018-09-01T13:41:19.445Z</lastmod>
+    <data>
+        <display>
+        <title>在线教育平台Mxonline-用户登录注册功能的实现</title>
+        <pubTime>2018-09-01T05:11:33.000Z</pubTime>
         
         <tag>django项目</tag>
          
