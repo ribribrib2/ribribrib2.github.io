@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-09-02T05:44:05.641Z</lastmod>
+    <data>
+        <display>
+        <title>django-编辑器Markdown的使用</title>
+        <pubTime>2018-09-01T14:46:43.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Ueditor%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2018-09-01T15:43:43.827Z</lastmod>
     <data>
@@ -15,21 +30,6 @@
          
         <tag>文本编辑</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-09-01T14:46:43.434Z</lastmod>
-    <data>
-        <display>
-        <title>django-编辑器Markdown的使用</title>
-        <pubTime>2018-09-01T14:46:43.000Z</pubTime>
-        
          
            
         </display>
