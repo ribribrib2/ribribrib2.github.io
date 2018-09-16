@@ -158,43 +158,6 @@
   </entry>
   
   <entry>
-    <title>Docker集成</title>
-    <link href="http://yoursite.com/2018/09/03/Docker%E9%9B%86%E6%88%90/"/>
-    <id>http://yoursite.com/2018/09/03/Docker集成/</id>
-    <published>2018-09-03T09:02:14.000Z</published>
-    <updated>2018-09-16T13:05:37.019Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115716448.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115731175.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115742124.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115806419.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115910685.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115941197.png" alt=""><br>Replication数据同步是单向的<br>PXC数据的强一致性<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913120634815.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913121026286.png" alt=""><br>docker自带网段172.17.0.xx<br>创建新的网段<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913024328954.png" alt=""><br>docker卷<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913121204974.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913024655812.png" alt=""><br>创建pxc容器<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913024748550.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913025049249.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913025127414.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913025141915.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -v v1:/var/lib/mysql --privileged --name=node1 --net=net1 --ip 172.18.0.2</span><br><span class="line">docker run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v2:/var/lib/mysql --privileged --name=node2 --net=net1 --ip 172.18.0.3 pxc</span><br><span class="line">docker run -d -p 3308:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v3:/var/lib/mysql --privileged --name=node3 --net=net1 --ip 172.18.0.4 pxc</span><br><span class="line">docker run -d -p 3309:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v4:/var/lib/mysql --privileged --name=node4 --net=net1 --ip 172.18.0.5 pxc</span><br><span class="line">docker run -d -p 3310:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v5:/var/lib/mysql --privileged --name=node5 --net=net1 --ip 172.18.0.6 pxc</span><br></pre></td></tr></table></figure></p><p>创建一个连接一个然后创建下一个</p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913035824443.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040247776.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040516797.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040811034.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040835374.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040859063.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040911145.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041050531.png" alt=""></p><p>创建容器<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041111620.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041334028.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041356607.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041428001.png" alt=""><br>通过4002登录然后写入数据会分发到一个节点  然后因为同步机制 会同步到其他节点</p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041933646.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041945827.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042038703.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042112917.png" alt=""></p><p>keepalived安装<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042231405.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042349224.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042421403.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042516160.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042526885.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042536640.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042546957.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042558392.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042605910.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042637866.png" alt=""></p><p>高速缓存<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042838995.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042849176.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042933882.png" alt=""><br>主节点不是中心节点<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913043112079.png" alt=""><br>A|B|C三个节点存储的数据是不一样的<br>所以要给每一个节点提供冗余节点<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913043258016.png" alt=""><br>三节点(加三个冗余节点):<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913043338958.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044313924.png" alt=""><br>选举机制<br>超过一半挂掉 无法选举<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044507991.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044644532.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044815856.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044950987.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045007438.png" alt=""><br>Nginx<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045406878.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045536012.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045640506.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045800499.png" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115716448.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://pe5izyf7a.bkt.clouddn.com
-      
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>django-URL的设计与配置</title>
-    <link href="http://yoursite.com/2018/09/03/django-URL%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2018/09/03/django-URL的设计与配置/</id>
-    <published>2018-09-03T09:02:14.000Z</published>
-    <updated>2018-09-03T09:02:14.886Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>nginx基础知识1</title>
     <link href="http://yoursite.com/2018/09/03/nginx%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/"/>
     <id>http://yoursite.com/2018/09/03/nginx基础知识1/</id>
@@ -214,6 +177,43 @@
     
     
       <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>django-URL的设计与配置</title>
+    <link href="http://yoursite.com/2018/09/03/django-URL%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2018/09/03/django-URL的设计与配置/</id>
+    <published>2018-09-03T09:02:14.000Z</published>
+    <updated>2018-09-03T09:02:14.886Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Docker集成</title>
+    <link href="http://yoursite.com/2018/09/03/Docker%E9%9B%86%E6%88%90/"/>
+    <id>http://yoursite.com/2018/09/03/Docker集成/</id>
+    <published>2018-09-03T09:02:14.000Z</published>
+    <updated>2018-09-16T13:05:37.019Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115716448.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115731175.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115742124.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115806419.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115910685.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115941197.png" alt=""><br>Replication数据同步是单向的<br>PXC数据的强一致性<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913120634815.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913121026286.png" alt=""><br>docker自带网段172.17.0.xx<br>创建新的网段<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913024328954.png" alt=""><br>docker卷<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913121204974.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913024655812.png" alt=""><br>创建pxc容器<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913024748550.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913025049249.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913025127414.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913025141915.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -v v1:/var/lib/mysql --privileged --name=node1 --net=net1 --ip 172.18.0.2</span><br><span class="line">docker run -d -p 3307:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v2:/var/lib/mysql --privileged --name=node2 --net=net1 --ip 172.18.0.3 pxc</span><br><span class="line">docker run -d -p 3308:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v3:/var/lib/mysql --privileged --name=node3 --net=net1 --ip 172.18.0.4 pxc</span><br><span class="line">docker run -d -p 3309:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v4:/var/lib/mysql --privileged --name=node4 --net=net1 --ip 172.18.0.5 pxc</span><br><span class="line">docker run -d -p 3310:3306 -e MYSQL_ROOT_PASSWORD=abc123456 -e CLUSTER_NAME=PXC -e XTRABACKUP_PASSWORD=abc123456 -e CLUSTER_JOIN=node1 -v v5:/var/lib/mysql --privileged --name=node5 --net=net1 --ip 172.18.0.6 pxc</span><br></pre></td></tr></table></figure></p><p>创建一个连接一个然后创建下一个</p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913035824443.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040247776.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040516797.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040811034.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040835374.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040859063.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913040911145.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041050531.png" alt=""></p><p>创建容器<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041111620.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041334028.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041356607.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041428001.png" alt=""><br>通过4002登录然后写入数据会分发到一个节点  然后因为同步机制 会同步到其他节点</p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041933646.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913041945827.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042038703.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042112917.png" alt=""></p><p>keepalived安装<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042231405.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042349224.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042421403.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042516160.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042526885.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042536640.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042546957.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042558392.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042605910.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042637866.png" alt=""></p><p>高速缓存<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042838995.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042849176.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913042933882.png" alt=""><br>主节点不是中心节点<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913043112079.png" alt=""><br>A|B|C三个节点存储的数据是不一样的<br>所以要给每一个节点提供冗余节点<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913043258016.png" alt=""><br>三节点(加三个冗余节点):<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913043338958.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044313924.png" alt=""><br>选举机制<br>超过一半挂掉 无法选举<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044507991.png" alt=""></p><p><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044644532.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044815856.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913044950987.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045007438.png" alt=""><br>Nginx<br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045406878.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045536012.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045640506.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913045800499.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://pe5izyf7a.bkt.clouddn.com/20180913115618578/20180913115716448.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://pe5izyf7a.bkt.clouddn.com
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="http://yoursite.com/tags/docker/"/>
     
   </entry>
   
