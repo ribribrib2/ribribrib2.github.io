@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-16T14:06:00.689Z</updated>
+  <updated>2018-09-19T14:40:17.141Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>jenkins+ansible+gitlab自动化部署三剑客</title>
+    <link href="http://yoursite.com/2018/09/19/jenkins-ansible-gitlab%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E4%B8%89%E5%89%91%E5%AE%A2/"/>
+    <id>http://yoursite.com/2018/09/19/jenkins-ansible-gitlab自动化部署三剑客/</id>
+    <published>2018-09-19T12:04:11.000Z</published>
+    <updated>2018-09-19T14:40:17.141Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是持续交付"><a href="#什么是持续交付" class="headerlink" title="什么是持续交付"></a>什么是持续交付</h1><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919080520878.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919080654505.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919080704818.png" alt=""></p><h1 id="Gitlab"><a href="#Gitlab" class="headerlink" title="Gitlab"></a>Gitlab</h1><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919093640679.png" alt=""></p><h2 id="gitlab与github区别"><a href="#gitlab与github区别" class="headerlink" title="gitlab与github区别"></a>gitlab与github区别</h2><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919093720625.png" alt=""></p><h2 id="gitlab优势与服务构成"><a href="#gitlab优势与服务构成" class="headerlink" title="gitlab优势与服务构成"></a>gitlab优势与服务构成</h2><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919093907129.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919093959440.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094032873.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094046741.png" alt=""> </p><h2 id="gitlab工作流程"><a href="#gitlab工作流程" class="headerlink" title="gitlab工作流程"></a>gitlab工作流程</h2><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094130744.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094156636.png" alt=""></p><h2 id="gitlab安装与配置"><a href="#gitlab安装与配置" class="headerlink" title="gitlab安装与配置"></a>gitlab安装与配置</h2><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094335973.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094405022.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094420121.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094847667.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094822430.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094521328.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094540946.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094952819.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095036539.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095111052.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919094600867.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095158594.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095316594.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095341792.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095409686.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095457908.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095528693.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095610035.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095637961.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095654946.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095726219.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095748700.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095808050.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095906755.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919095921072.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919100005940.png" alt=""><br><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919100133211.png" alt=""></p><h1 id="Gitlab应用"><a href="#Gitlab应用" class="headerlink" title="Gitlab应用"></a>Gitlab应用</h1><h2 id="查看系统信息"><a href="#查看系统信息" class="headerlink" title="查看系统信息"></a>查看系统信息</h2><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919100927152.png" alt=""></p><h2 id="查看log"><a href="#查看log" class="headerlink" title="查看log"></a>查看log</h2><p><img src="/jenkins-ansible-gitlab自动化部署三剑客/20180919100943484.png" alt=""></p><h2 id="创建项目-用户-提交-合并"><a href="#创建项目-用户-提交-合并" class="headerlink" title="创建项目|用户|提交|合并"></a>创建项目|用户|提交|合并</h2>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;什么是持续交付&quot;&gt;&lt;a href=&quot;#什么是持续交付&quot; class=&quot;headerlink&quot; title=&quot;什么是持续交付&quot;&gt;&lt;/a&gt;什么是持续交付&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/jenkins-ansible-gitlab自动化部署三剑客/20180919
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ansible+django笔记1</title>
+    <link href="http://yoursite.com/2018/09/17/Ansible+django%E7%AC%94%E8%AE%B01/"/>
+    <id>http://yoursite.com/2018/09/17/Ansible+django笔记1/</id>
+    <published>2018-09-17T11:47:53.000Z</published>
+    <updated>2018-09-25T11:24:38.370Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/Ansible+django笔记1/20180925072437053.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;/Ansible+django笔记1/20180925072437053.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ansible基础入门</title>
+    <link href="http://yoursite.com/2018/09/17/Ansible%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2018/09/17/Ansible基础入门/</id>
+    <published>2018-09-17T11:47:53.000Z</published>
+    <updated>2018-09-21T03:59:25.461Z</updated>
+    
+    <content type="html"><![CDATA[<p>作者写的关于ansible的<a href="https://www.jianshu.com/p/575ced3a08fa" target="_blank" rel="noopener">博客</a></p><h1 id="ansible"><a href="#ansible" class="headerlink" title="ansible"></a>ansible</h1><p><img src="/Ansible基础入门/20180921094959366.png" alt=""><br><img src="/Ansible基础入门/20180921094910513.png" alt=""><br><img src="/Ansible基础入门/20180921095341679.png" alt=""><br><img src="/Ansible基础入门/20180921095441973.png" alt=""><br><img src="/Ansible基础入门/20180921114126806.png" alt=""><br><img src="/Ansible基础入门/20180921114220343.png" alt=""><br><img src="/Ansible基础入门/20180921114241773.png" alt=""><br><img src="/Ansible基础入门/20180921114313097.png" alt=""><br>安装前linux主机配置:<br><img src="/Ansible基础入门/20180921114514699.png" alt=""><br>python3.6安装:<br><img src="/Ansible基础入门/20180921114731714.png" alt=""><br><img src="/Ansible基础入门/20180921114757477.png" alt=""><br><img src="/Ansible基础入门/20180921114806991.png" alt=""><br><img src="/Ansible基础入门/20180921114855193.png" alt=""><br><img src="/Ansible基础入门/20180921114953181.png" alt=""><br><img src="/Ansible基础入门/20180921115123703.png" alt=""></p><h1 id="ansible-playbooks入门和编写规范"><a href="#ansible-playbooks入门和编写规范" class="headerlink" title="ansible playbooks入门和编写规范"></a>ansible playbooks入门和编写规范</h1><p><img src="/Ansible基础入门/20180921115502528.png" alt=""><br><img src="/Ansible基础入门/20180921115602383.png" alt=""><br><img src="/Ansible基础入门/20180921115716217.png" alt=""><br><img src="/Ansible基础入门/20180921115811467.png" alt=""><br><img src="/Ansible基础入门/20180921115848029.png" alt=""><br><img src="/Ansible基础入门/20180921115922145.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;作者写的关于ansible的&lt;a href=&quot;https://www.jianshu.com/p/575ced3a08fa&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;博客&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;ansible&quot;&gt;&lt;a href=&quot;#ansib
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>jenkins基础入门</title>
+    <link href="http://yoursite.com/2018/09/17/jenkins%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2018/09/17/jenkins基础入门/</id>
+    <published>2018-09-17T11:47:32.000Z</published>
+    <updated>2018-09-22T03:55:42.934Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Jenkins介绍"><a href="#Jenkins介绍" class="headerlink" title="Jenkins介绍"></a>Jenkins介绍</h1><p><img src="/jenkins基础入门/20180922115018670.png" alt=""><br><img src="/jenkins基础入门/20180922115453313.png" alt=""><br><img src="/jenkins基础入门/20180922115525631.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Jenkins介绍&quot;&gt;&lt;a href=&quot;#Jenkins介绍&quot; class=&quot;headerlink&quot; title=&quot;Jenkins介绍&quot;&gt;&lt;/a&gt;Jenkins介绍&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/jenkins基础入门/20180922115018670.p
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>在线教育平台Mxonline-用户登录注册功能的实现</title>
@@ -158,6 +244,28 @@
   </entry>
   
   <entry>
+    <title>django-URL的设计与配置</title>
+    <link href="http://yoursite.com/2018/09/03/django-URL%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2018/09/03/django-URL的设计与配置/</id>
+    <published>2018-09-03T09:02:14.000Z</published>
+    <updated>2018-10-25T09:47:58.977Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://qiniu.rearib.top/django-URL的设计与配置/20181025054532208.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;img src=&quot;http://qiniu.rearib.top/django-URL的设计与配置/20181025054532208.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>nginx基础知识1</title>
     <link href="http://yoursite.com/2018/09/03/nginx%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/"/>
     <id>http://yoursite.com/2018/09/03/nginx基础知识1/</id>
@@ -177,20 +285,6 @@
     
     
       <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>django-URL的设计与配置</title>
-    <link href="http://yoursite.com/2018/09/03/django-URL%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2018/09/03/django-URL的设计与配置/</id>
-    <published>2018-09-03T09:02:14.000Z</published>
-    <updated>2018-09-03T09:02:14.886Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
     
   </entry>
   
@@ -269,9 +363,9 @@
     <link href="http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2018/09/01/django-编辑器Markdown的使用/</id>
     <published>2018-09-01T14:46:43.000Z</published>
-    <updated>2018-09-02T05:47:07.920Z</updated>
+    <updated>2018-10-25T09:57:06.237Z</updated>
     
-    <content type="html"><![CDATA[<p>&emsp;&emsp;之前的一篇博客写到了如何在django中使用Ueditor,今天我们看看如何在django中使用Markdown进行文本的编辑.它是基于<a href="https://pandao.github.io/editor.md/" target="_blank" rel="noopener">editor.md</a>插件</p><h1 id="Markdown的安装"><a href="#Markdown的安装" class="headerlink" title="Markdown的安装"></a>Markdown的安装</h1><p>Markdown使用的是源码安装的方式:</p><ol><li>首先到<a href="https://github.com/feiyin0719/django-markdown-editor.git" target="_blank" rel="noopener">github</a>下载源码</li><li>把里面的markdown文件夹放到extra_apps中</li><li>然后在INSTALLED_APPS中添加markdown.并在url.py中添加:<blockquote><p>url(r’^markdown/‘, include(‘markdown.urls’)),</p></blockquote></li><li>在setting.py中设置图片上传的文件夹<blockquote><p>MARKDOWN_IMAGE_FLODER = ‘ markdown ‘  #图片会上传到media/markdown文件夹下</p></blockquote></li><li>配置上传图片格式<blockquote><p>MARKDOWN_IMAGE_FORMATS = [“jpg”，”jpeg”，”gif”，”png”，”bmp”，”webp”]</p></blockquote></li></ol><h1 id="在admin中使用"><a href="#在admin中使用" class="headerlink" title="在admin中使用"></a>在admin中使用</h1><p>&emsp;&emsp;所有的TextField都使用markdown编辑器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">from markdown.widgets import AdminMarkdownWidget</span><br><span class="line"></span><br><span class="line">class TestAdmin(admin.ModelAdmin):</span><br><span class="line">    formfield_overrides = &#123;</span><br><span class="line">        models.TextField: &#123;&apos;widget&apos;: AdminMarkdownWidget()&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">admin.site.register(Test,TestAdmin)</span><br></pre></td></tr></table></figure></p><h1 id="在xadmin中使用"><a href="#在xadmin中使用" class="headerlink" title="在xadmin中使用"></a>在xadmin中使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">from markdown.widgets import XAdminMarkdownWidget</span><br><span class="line"></span><br><span class="line">class TestAdmin(admin.ModelAdmin):</span><br><span class="line">    formfield_overrides = &#123;</span><br><span class="line">        models.TextField: &#123;&apos;widget&apos;: XAdminMarkdownWidget()&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">xadmin.site.register(Test,TestAdmin)</span><br></pre></td></tr></table></figure><h1 id="在form中使用"><a href="#在form中使用" class="headerlink" title="在form中使用"></a>在form中使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from django import forms</span><br><span class="line">from markdown.forms import MarkdownField</span><br><span class="line"></span><br><span class="line">class BlogForm(forms.Form):</span><br><span class="line">    name = forms.CharField()</span><br><span class="line">    context = MarkdownField()</span><br></pre></td></tr></table></figure><p>这里注意在前端需要添加去添加css和js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Hello Django!&lt;/title&gt;</span><br><span class="line">    &#123;&#123;form.media&#125;&#125;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&#123;&#123;form&#125;&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p><h1 id="支持参数"><a href="#支持参数" class="headerlink" title="支持参数"></a>支持参数</h1><blockquote><p>width<br>height<br>theme<br>previewTheme<br>editorTheme<br>syncScrolling<br>saveHTMLToTextarea<br>emoji<br>taskList<br>tocm<br>tex<br>flowChart<br>sequenceDiagram<br>codeFold</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">formfield_overrides = &#123;</span><br><span class="line">        models.TextField: &#123;&apos;widget&apos;: AdminMarkdownWidget(emoji=False)&#125;,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h1 id="最终后端效果"><a href="#最终后端效果" class="headerlink" title="最终后端效果"></a>最终后端效果</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/django-编辑器Markdown的使用/20180902125815711.png" alt=""></p><h1 id="前端显示"><a href="#前端显示" class="headerlink" title="前端显示"></a>前端显示</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/django-编辑器Markdown的使用/20180902013144792.png" alt=""><br>&emsp;&emsp;你会发现前端显示是有问题的,这个时候需要把markdown语法转换为html,我们需要安装django-markdown-deux.</p><ol><li>首先运行<blockquote><p>pip install django-markdown-deux</p></blockquote></li><li>在INSTALLED_APPS中添加markdown_deux</li><li>在需要显示markdown的页面:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load markdown_deux_tags %&#125;</span><br><span class="line">&#123;&#123; course.detail | markdown &#125;&#125;</span><br></pre></td></tr></table></figure></li></ol><p>最后效果:<br><img src="http://pe5izyf7a.bkt.clouddn.com/django-编辑器Markdown的使用/20180902014046963.png" alt=""></p><p><strong>&emsp;&emsp;这里还有一个问题就是无法修改图片的大小,目前没有比较有效的解决办法,如果对图片大小要求比较高,可以使用七牛等支持参数的图床,如果有其他想法,欢迎交流~</strong></p>]]></content>
+    <content type="html"><![CDATA[<p>&emsp;&emsp;之前的一篇博客写到了如何在django中使用Ueditor,今天我们看看如何在django中使用Markdown进行文本的编辑.它是基于<a href="https://pandao.github.io/editor.md/" target="_blank" rel="noopener">editor.md</a>插件</p><h1 id="Markdown的安装"><a href="#Markdown的安装" class="headerlink" title="Markdown的安装"></a>Markdown的安装</h1><p>Markdown使用的是源码安装的方式:</p><ol><li>首先到<a href="https://github.com/feiyin0719/django-markdown-editor.git" target="_blank" rel="noopener">github</a>下载源码</li><li>把里面的markdown文件夹放到extra_apps中</li><li>然后在INSTALLED_APPS中添加markdown.并在url.py中添加:<blockquote><p>url(r’^markdown/‘, include(‘markdown.urls’)),</p></blockquote></li><li>在setting.py中设置图片上传的文件夹<blockquote><p>MARKDOWN_IMAGE_FLODER = ‘ markdown ‘  #图片会上传到media/markdown文件夹下</p></blockquote></li><li>配置上传图片格式<blockquote><p>MARKDOWN_IMAGE_FORMATS = [“jpg”，”jpeg”，”gif”，”png”，”bmp”，”webp”]</p></blockquote></li></ol><h1 id="在admin中使用"><a href="#在admin中使用" class="headerlink" title="在admin中使用"></a>在admin中使用</h1><p>&emsp;&emsp;所有的TextField都使用markdown编辑器:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">from markdown.widgets import AdminMarkdownWidget</span><br><span class="line"></span><br><span class="line">class TestAdmin(admin.ModelAdmin):</span><br><span class="line">    formfield_overrides = &#123;</span><br><span class="line">        models.TextField: &#123;&apos;widget&apos;: AdminMarkdownWidget()&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">admin.site.register(Test,TestAdmin)</span><br></pre></td></tr></table></figure></p><h1 id="在xadmin中使用"><a href="#在xadmin中使用" class="headerlink" title="在xadmin中使用"></a>在xadmin中使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line">from markdown.widgets import XAdminMarkdownWidget</span><br><span class="line"></span><br><span class="line">class TestAdmin(admin.ModelAdmin):</span><br><span class="line">    formfield_overrides = &#123;</span><br><span class="line">        models.TextField: &#123;&apos;widget&apos;: XAdminMarkdownWidget()&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">xadmin.site.register(Test,TestAdmin)</span><br></pre></td></tr></table></figure><h1 id="在form中使用"><a href="#在form中使用" class="headerlink" title="在form中使用"></a>在form中使用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from django import forms</span><br><span class="line">from markdown.forms import MarkdownField</span><br><span class="line"></span><br><span class="line">class BlogForm(forms.Form):</span><br><span class="line">    name = forms.CharField()</span><br><span class="line">    context = MarkdownField()</span><br></pre></td></tr></table></figure><p>这里注意在前端需要添加去添加css和js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Hello Django!&lt;/title&gt;</span><br><span class="line">    &#123;&#123;form.media&#125;&#125;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&#123;&#123;form&#125;&#125;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p><h1 id="支持参数"><a href="#支持参数" class="headerlink" title="支持参数"></a>支持参数</h1><blockquote><p>width<br>height<br>theme<br>previewTheme<br>editorTheme<br>syncScrolling<br>saveHTMLToTextarea<br>emoji<br>taskList<br>tocm<br>tex<br>flowChart<br>sequenceDiagram<br>codeFold</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">formfield_overrides = &#123;</span><br><span class="line">        models.TextField: &#123;&apos;widget&apos;: AdminMarkdownWidget(emoji=False)&#125;,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h1 id="最终后端效果"><a href="#最终后端效果" class="headerlink" title="最终后端效果"></a>最终后端效果</h1><p><img src="/django-编辑器Markdown的使用/20180902125815711.png" alt=""></p><h1 id="前端显示"><a href="#前端显示" class="headerlink" title="前端显示"></a>前端显示</h1><p><img src="/django-编辑器Markdown的使用/20180902013144792.png" alt=""><br>&emsp;&emsp;你会发现前端显示是有问题的,这个时候需要把markdown语法转换为html,我们需要安装django-markdown-deux.</p><ol><li>首先运行<blockquote><p>pip install django-markdown-deux</p></blockquote></li><li>在INSTALLED_APPS中添加markdown_deux</li><li>在需要显示markdown的页面:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load markdown_deux_tags %&#125;</span><br><span class="line">&#123;&#123; course.detail | markdown &#125;&#125;</span><br></pre></td></tr></table></figure></li></ol><p>最后效果:<br><img src="/django-编辑器Markdown的使用/1.png" alt=""></p><p><strong>&emsp;&emsp;这里还有一个问题就是无法修改图片的大小,目前没有比较有效的解决办法,如果对图片大小要求比较高,可以使用七牛等支持参数的图床,如果有其他想法,欢迎交流~</strong></p><p><img src="http://qiniu.rearib.top/django-编辑器Markdown的使用/20181025055419374.png" alt=""></p>]]></content>
     
     <summary type="html">
     
@@ -366,29 +460,6 @@
       <category term="django项目" scheme="http://yoursite.com/tags/django%E9%A1%B9%E7%9B%AE/"/>
     
       <category term="Mxonline" scheme="http://yoursite.com/tags/Mxonline/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常用Markdown语法说明</title>
-    <link href="http://yoursite.com/2018/08/30/%E5%B8%B8%E7%94%A8Markdown%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/"/>
-    <id>http://yoursite.com/2018/08/30/常用Markdown语法说明/</id>
-    <published>2018-08-30T13:10:19.000Z</published>
-    <updated>2018-08-31T02:45:08.380Z</updated>
-    
-    <content type="html"><![CDATA[<p>Markdown 是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式”编写文档，本文主要针对Hexo中Markdown常用的语法进行总结，更详细的内容请参考Hexo官方书写格式<a href="https://hexo.io/zh-cn/docs/tag-plugins#Image" target="_blank" rel="noopener">链接</a>和Markdown书写格式<a href="https://www.appinn.com/markdown/" target="_blank" rel="noopener">链接</a></p><h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><p>Markdown支持两种标题的语法，Setext和atx形式：Setext形式是用底线的形式，利用 = (最高阶标题)和 - (第二阶标题)。Atx形式在行首插入 1 到 6 个 # ，对应到标题 1 到 6 阶。<br><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180830101415216.png" alt=""></p><h1 id="最高阶标题"><a href="#最高阶标题" class="headerlink" title="最高阶标题"></a>最高阶标题</h1><h2 id="第二阶标题"><a href="#第二阶标题" class="headerlink" title="第二阶标题"></a>第二阶标题</h2><h1 id="H1标题"><a href="#H1标题" class="headerlink" title="H1标题"></a>H1标题</h1><h2 id="H2标题"><a href="#H2标题" class="headerlink" title="H2标题"></a>H2标题</h2><h3 id="H3标题"><a href="#H3标题" class="headerlink" title="H3标题"></a>H3标题</h3><h4 id="H4标题"><a href="#H4标题" class="headerlink" title="H4标题"></a>H4标题</h4><h5 id="H5标题"><a href="#H5标题" class="headerlink" title="H5标题"></a>H5标题</h5><h6 id="H6标题"><a href="#H6标题" class="headerlink" title="H6标题"></a>H6标题</h6><h1 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h1><p>区块引用则使用 email 形式的 ‘&gt;’ 角括号。<br><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180830101428434.png" alt=""></p><blockquote><p>区块引用</p><blockquote><p>嵌套引用</p></blockquote></blockquote><h1 id="修辞和强调"><a href="#修辞和强调" class="headerlink" title="修辞和强调"></a>修辞和强调</h1><p>强调内容两侧分别加上星号或者底线。<br><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831094029082.png" alt=""><br><em>斜体</em><br><strong>粗体</strong><br><del>删除</del></p><h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><ul><li>至少一个-</li><li>使用:来设置对其方式</li></ul><p><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831094343570.png" alt=""></p><table><thead><tr><th style="text-align:left">第一列</th><th style="text-align:right">第二列</th><th style="text-align:center">第三列</th></tr></thead><tbody><tr><td style="text-align:left">内容</td><td style="text-align:right">内容</td><td style="text-align:center">内容</td></tr></tbody></table><h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>无序列表使用星号、加号或减号来做为列表。<br><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180830101500576.png" alt=""></p><ul><li>一号</li><li>二号</li></ul><ul><li>三号</li><li>四号</li></ul><ul><li>五号</li><li>六号</li></ul><h1 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180830101514715.png" alt=""></p><ol><li>一号</li><li>二号</li></ol><h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831094437848.png" alt=""><br>这是我的<a href="http://blog.rearib.top" target="_blank" rel="noopener">博客</a>地址</p><h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831101823686.png" alt=""></p><hr><h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>图片的语法和链接很像，只需在链接的基础上前方加一个！<br>注意图片大小的设置方式,关于其他设置可以参考<a href="https://developer.qiniu.com/dora/manual/3683/img-directions-for-use" target="_blank" rel="noopener">七牛云</a><br><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831101811191.png" alt=""><br><img src="http://pe5izyf7a.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20180706201017_eviCsbl.jpg?imageView2/1/w/200/h/200/" alt="我的头像"></p><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831101753642.png" alt=""><br><figure class="highlight objc"><figcaption><span>main.c</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>; i = <span class="number">1</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">      printf(<span class="string">"hello markdown!\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h1 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h1><p><img src="http://pe5izyf7a.bkt.clouddn.com/常用Markdown语法说明/20180831103438948.png" alt=""></p><ul><li style="list-style: none"><input type="checkbox" checked> 选项一</li><li style="list-style: none"><input type="checkbox"> 选项二  </li><li style="list-style: none"><input type="checkbox"> 选项三</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Markdown 是一种轻量级标记语言，它允许人们“使用易读易写的纯文本格式”编写文档，本文主要针对Hexo中Markdown常用的语法进行总结，更详细的内容请参考Hexo官方书写格式&lt;a href=&quot;https://hexo.io/zh-cn/docs/tag-plugi
-      
-    
-    </summary>
-    
-    
-      <category term="Markdown" scheme="http://yoursite.com/tags/Markdown/"/>
     
   </entry>
   

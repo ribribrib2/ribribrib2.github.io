@@ -4,6 +4,100 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2018-10-25T09:57:06.237Z</lastmod>
+    <data>
+        <display>
+        <title>django-编辑器Markdown的使用</title>
+        <pubTime>2018-09-01T14:46:43.000Z</pubTime>
+        
+        <tag>django</tag>
+         
+        <tag>文本编辑</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/03/django-URL%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2018-10-25T09:47:58.977Z</lastmod>
+    <data>
+        <display>
+        <title>django-URL的设计与配置</title>
+        <pubTime>2018-09-03T09:02:14.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/17/Ansible+django%E7%AC%94%E8%AE%B01/</loc>
+    <lastmod>2018-09-25T11:24:38.370Z</lastmod>
+    <data>
+        <display>
+        <title>Ansible+django笔记1</title>
+        <pubTime>2018-09-17T11:47:53.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/17/jenkins%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2018-09-22T03:55:42.934Z</lastmod>
+    <data>
+        <display>
+        <title>jenkins基础入门</title>
+        <pubTime>2018-09-17T11:47:32.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/17/Ansible%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2018-09-21T03:59:25.461Z</lastmod>
+    <data>
+        <display>
+        <title>Ansible基础入门</title>
+        <pubTime>2018-09-17T11:47:53.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/19/jenkins-ansible-gitlab%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E4%B8%89%E5%89%91%E5%AE%A2/</loc>
+    <lastmod>2018-09-19T14:40:17.141Z</lastmod>
+    <data>
+        <display>
+        <title>jenkins+ansible+gitlab自动化部署三剑客</title>
+        <pubTime>2018-09-19T12:04:11.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/09/16/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0Mxonline-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0-1/</loc>
     <lastmod>2018-09-16T14:06:00.689Z</lastmod>
     <data>
@@ -187,21 +281,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/09/03/django-URL%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2018-09-03T09:02:14.886Z</lastmod>
-    <data>
-        <display>
-        <title>django-URL的设计与配置</title>
-        <pubTime>2018-09-03T09:02:14.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2018/09/02/django-%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0%E7%9A%84%E4%B9%A6%E5%86%99/</loc>
     <lastmod>2018-09-02T08:49:04.738Z</lastmod>
     <data>
@@ -210,25 +289,6 @@
         <pubTime>2018-09-02T06:01:52.000Z</pubTime>
         
         <tag>django</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Markdown%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2018-09-02T05:47:07.920Z</lastmod>
-    <data>
-        <display>
-        <title>django-编辑器Markdown的使用</title>
-        <pubTime>2018-09-01T14:46:43.000Z</pubTime>
-        
-        <tag>django</tag>
-         
-        <tag>文本编辑</tag>
          
          
            
