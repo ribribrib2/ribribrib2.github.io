@@ -4,14 +4,14 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/09/02/django-FBV&CBV/</loc>
-    <lastmod>2018-10-26T01:50:19.703Z</lastmod>
+    <loc>http://yoursite.com/2018/10/26/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/</loc>
+    <lastmod>2018-10-26T09:30:31.000Z</lastmod>
     <data>
         <display>
-        <title>django-FBV&CBV</title>
-        <pubTime>2018-09-02T06:01:52.000Z</pubTime>
+        <title>线程与进程</title>
+        <pubTime>2018-10-26T01:47:08.000Z</pubTime>
         
-        <tag>django</tag>
+        <tag>python</tag>
          
          
            
@@ -21,14 +21,31 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/10/26/1/</loc>
-    <lastmod>2018-10-26T01:48:06.977Z</lastmod>
+    <loc>http://yoursite.com/2018/09/03/Docker%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2018-10-26T01:50:49.271Z</lastmod>
     <data>
         <display>
-        <title>线程与进程</title>
-        <pubTime>2018-10-26T01:47:08.000Z</pubTime>
+        <title>Docker入门</title>
+        <pubTime>2018-09-03T09:03:44.000Z</pubTime>
         
-        <tag>python</tag>
+        <tag>Docker</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/09/02/django-FBV&CBV/</loc>
+    <lastmod>2018-10-26T01:50:19.703Z</lastmod>
+    <data>
+        <display>
+        <title>django-FBV&CBV</title>
+        <pubTime>2018-09-02T06:01:52.000Z</pubTime>
+        
+        <tag>django</tag>
          
          
            
@@ -63,23 +80,6 @@
         <pubTime>2018-08-30T13:10:19.000Z</pubTime>
         
         <tag>Markdown</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/09/03/Docker%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2018-10-26T01:26:22.306Z</lastmod>
-    <data>
-        <display>
-        <title>Docker入门</title>
-        <pubTime>2018-09-03T09:03:44.000Z</pubTime>
-        
-        <tag>Docker</tag>
          
          
            

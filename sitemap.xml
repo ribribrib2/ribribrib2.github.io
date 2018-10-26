@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2018/09/02/django-FBV&CBV/</loc>
+    <loc>http://yoursite.com/2018/10/26/%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B/</loc>
     
-    <lastmod>2018-10-26T01:50:19.703Z</lastmod>
+    <lastmod>2018-10-26T09:30:31.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/10/26/1/</loc>
+    <loc>http://yoursite.com/2018/09/03/Docker%E5%85%A5%E9%97%A8/</loc>
     
-    <lastmod>2018-10-26T01:48:06.977Z</lastmod>
+    <lastmod>2018-10-26T01:50:49.271Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/09/02/django-FBV&CBV/</loc>
+    
+    <lastmod>2018-10-26T01:50:19.703Z</lastmod>
     
   </url>
   
@@ -26,13 +33,6 @@
     <loc>http://yoursite.com/2018/08/30/%E5%B8%B8%E7%94%A8Markdown%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E/</loc>
     
     <lastmod>2018-10-26T01:26:49.750Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/09/03/Docker%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2018-10-26T01:26:22.306Z</lastmod>
     
   </url>
   
