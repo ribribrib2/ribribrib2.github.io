@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/09/02/django-FBV&CBV/</loc>
+    
+    <lastmod>2018-10-26T01:50:19.703Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/10/26/1/</loc>
+    
+    <lastmod>2018-10-26T01:48:06.977Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/09/10/%E4%BD%BF%E7%94%A8vagrant%E6%90%AD%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2018-10-26T01:27:36.919Z</lastmod>
@@ -23,6 +37,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/2018/09/03/django-%E6%89%A9%E5%B1%95Django%E8%87%AA%E5%B8%A6User%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95/</loc>
+    
+    <lastmod>2018-10-26T01:25:58.540Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Ueditor%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2018-10-26T01:25:38.399Z</lastmod>
@@ -37,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2018/09/02/django-FBV-&-CBV/</loc>
-    
-    <lastmod>2018-10-26T01:25:01.730Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2018/09/01/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0Mxonline-xadmin%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2018-10-26T01:24:18.739Z</lastmod>
@@ -54,13 +68,6 @@
     <loc>http://yoursite.com/2018/09/01/%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0Mxonline-django%E5%9F%BA%E6%9C%AC%E8%AE%BE%E7%BD%AE%E5%92%8Cmodel%E8%AE%BE%E8%AE%A1/</loc>
     
     <lastmod>2018-10-26T01:24:03.276Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2018/09/03/django-%E6%89%A9%E5%B1%95Django%E8%87%AA%E5%B8%A6User%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95/</loc>
-    
-    <lastmod>2018-09-16T13:06:23.798Z</lastmod>
     
   </url>
   

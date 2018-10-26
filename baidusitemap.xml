@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/09/02/django-FBV&CBV/</loc>
+    <lastmod>2018-10-26T01:50:19.703Z</lastmod>
+    <data>
+        <display>
+        <title>django-FBV&CBV</title>
+        <pubTime>2018-09-02T06:01:52.000Z</pubTime>
+        
+        <tag>django</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/10/26/1/</loc>
+    <lastmod>2018-10-26T01:48:06.977Z</lastmod>
+    <data>
+        <display>
+        <title>线程与进程</title>
+        <pubTime>2018-10-26T01:47:08.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/09/10/%E4%BD%BF%E7%94%A8vagrant%E6%90%AD%E5%BB%BA%E8%99%9A%E6%8B%9F%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</loc>
     <lastmod>2018-10-26T01:27:36.919Z</lastmod>
     <data>
@@ -55,6 +89,23 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/09/03/django-%E6%89%A9%E5%B1%95Django%E8%87%AA%E5%B8%A6User%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95/</loc>
+    <lastmod>2018-10-26T01:25:58.540Z</lastmod>
+    <data>
+        <display>
+        <title>django-扩展Django自带User模型，实现用户注册与登录</title>
+        <pubTime>2018-09-03T09:04:04.000Z</pubTime>
+        
+        <tag>django</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/09/01/django-%E7%BC%96%E8%BE%91%E5%99%A8Ueditor%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2018-10-26T01:25:38.399Z</lastmod>
     <data>
@@ -84,23 +135,6 @@
         <tag>django</tag>
          
         <tag>文本编辑</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/09/02/django-FBV-&-CBV/</loc>
-    <lastmod>2018-10-26T01:25:01.730Z</lastmod>
-    <data>
-        <display>
-        <title>django-FBV & CBV</title>
-        <pubTime>2018-09-02T06:01:52.000Z</pubTime>
-        
-        <tag>django</tag>
          
          
            
@@ -141,23 +175,6 @@
         <tag>django项目</tag>
          
         <tag>Mxonline</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/09/03/django-%E6%89%A9%E5%B1%95Django%E8%87%AA%E5%B8%A6User%E6%A8%A1%E5%9E%8B%EF%BC%8C%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95/</loc>
-    <lastmod>2018-09-16T13:06:23.798Z</lastmod>
-    <data>
-        <display>
-        <title>django-扩展Django自带User模型，实现用户注册与登录</title>
-        <pubTime>2018-09-03T09:04:04.000Z</pubTime>
-        
-        <tag>django</tag>
          
          
            
