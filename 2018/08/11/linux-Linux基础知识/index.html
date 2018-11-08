@@ -1,0 +1,624 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="个人的技术分享和生活点滴记录"><meta name="keywords" content="Rearib"><title>linux-Linux基础知识 | Rearib的个人博客</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">linux-Linux基础知识</h1><a id="logo" href="/.">Rearib的个人博客</a><p class="description">一生温暖纯良，不舍爱与自由</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Arama"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">linux-Linux基础知识</h1><div class="post-meta"><a href="/2018/08/11/linux-Linux基础知识/#comments" class="comment-count"></a><p><span class="date">Aug 11, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>&emsp;&emsp;作为一个程序猿，基本都会接触 linux , 所以一些基本的操作和指令还是要掌握的， 这里整理出平时使用 linux 常用的一些指令。<br><a id="more"></a><br>linux命令大全：<a href="http://man.linuxde.net/" target="_blank" rel="noopener">传送门</a></p>
+<h2 id="Linux系统目录结构"><a href="#Linux系统目录结构" class="headerlink" title="Linux系统目录结构"></a>Linux系统目录结构</h2><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>解释</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bin</td>
+<td>存放常用可执行文件或者链接文件</td>
+<td>(绿色或浅蓝色)ls,cat,mkdir等常用命令一般都在这里</td>
+</tr>
+<tr>
+<td>etc</td>
+<td>存放系统管理所需要的配置文件和子目录</td>
+<td></td>
+</tr>
+<tr>
+<td>home</td>
+<td>用户的主目录</td>
+<td>在Linux中，每个用户都有一个自己的目录,用户创建时会在该目录下创建一个目录,目录名是以用户的账号命名</td>
+</tr>
+<tr>
+<td>root</td>
+<td>该目录为系统管理员，也称作超级权限者的用户主目录</td>
+<td>root的家目录</td>
+</tr>
+<tr>
+<td>tmp</td>
+<td>存放一些临时文件</td>
+<td></td>
+</tr>
+<tr>
+<td>boot</td>
+<td>Linux时使用的一些核心文件</td>
+<td>存储系统启动文件</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>Linux的硬件设备目录</td>
+<td>linux系统所有的硬件都是通过文件表示</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>系统最基本的动态连接共享库</td>
+<td></td>
+</tr>
+<tr>
+<td>media</td>
+<td>linux系统会自动识别一些设备</td>
+<td>例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下</td>
+</tr>
+<tr>
+<td>mnt</td>
+<td>用户临时挂载别的文件系统,，我们可以将光驱挂载在/mnt/上，然后进入该目录就可以查看光驱里的内容</td>
+<td></td>
+</tr>
+<tr>
+<td>sbin</td>
+<td>s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序</td>
+<td>该目录文件对应指令都是root用户可以执行的</td>
+</tr>
+<tr>
+<td>usr</td>
+<td>用户的很多应用程序和文件都放在这个目录下,类似于windows下的program files目录</td>
+<td>该目录经常用于安装各种软件</td>
+</tr>
+<tr>
+<td>var</td>
+<td>这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>/var：这是一个非常重要的目录，系统上跑了很多程序，那么每个程序都会有相应的日志产生，而这些日志就被记录到这个目录下，具体在/var/log 目录下</li>
+</ul>
+<h3 id="bin-sbin-usr-sbin-usr-bin目录"><a href="#bin-sbin-usr-sbin-usr-bin目录" class="headerlink" title="/bin,/sbin,/usr/sbin,/usr/bin目录"></a>/bin,/sbin,/usr/sbin,/usr/bin目录</h3><ul>
+<li>使用权限<blockquote>
+<p>/bin下的命令管理员和一般的用户都可以使用</p>
+<p>/sbin下的命令通常只有管理员才可以运行。</p>
+</blockquote>
+</li>
+<li>命令功能<blockquote>
+<p>/sbin 下的命令属于<strong>基本的系统命令</strong>，如shutdown，reboot，用于启动系统，修复系统</p>
+<p>/bin下存放一些<strong>普通的基本命令</strong>，如ls,chmod等，这些命令在Linux系统里的配置文件脚本里经常用到。</p>
+<p>/usr/sbin,/usr/bin存放一些系统非必须的命令</p>
+<p>/usr/bin　是你在后期安装的一些软件的运行脚本。主要放置一些应用软体工具的必备执行档</p>
+<p>/usr/sbin   放置一些用户安装的系统管理的必备程式</p>
+</blockquote>
+</li>
+<li>参考文章：<a href="https://www.cnblogs.com/fengjunhua/p/7737607.html" target="_blank" rel="noopener">传送门</a></li>
+</ul>
+<p>&emsp;&emsp;<strong>如果新装的系统，运行一些很正常的诸如：shutdown，fdisk的命令时，悍然提示：bash:command not found。那么首先就要考虑root 的$PATH里是否已经包含了这些环境变量。</strong></p>
+<h2 id="目录与文件"><a href="#目录与文件" class="headerlink" title="目录与文件"></a>目录与文件</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>白色</td>
+<td>普通文件</td>
+<td></td>
+</tr>
+<tr>
+<td>蓝色</td>
+<td>文件夹</td>
+<td>[d]</td>
+</tr>
+<tr>
+<td>浅蓝色</td>
+<td>链接文件</td>
+<td>[l]</td>
+</tr>
+<tr>
+<td>红色</td>
+<td>压缩文件</td>
+<td>[-]</td>
+</tr>
+<tr>
+<td>红色闪烁</td>
+<td>链接文件有问题</td>
+<td></td>
+</tr>
+<tr>
+<td>绿色</td>
+<td>可执行文件</td>
+<td></td>
+</tr>
+<tr>
+<td>黄色</td>
+<td>设备文件</td>
+<td></td>
+</tr>
+<tr>
+<td>灰色</td>
+<td>其他文件</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>进入一个目录</td>
+<td>cd xxx</td>
+<td></td>
+</tr>
+<tr>
+<td>列出当前目录文件列表</td>
+<td>ls -al</td>
+<td>-l：长格式显示<br>-a：全部的文件</td>
+</tr>
+<tr>
+<td>返回上一目录</td>
+<td>cd ..</td>
+<td></td>
+</tr>
+<tr>
+<td>返回根目录</td>
+<td>cd /</td>
+<td></td>
+</tr>
+<tr>
+<td>显示当前目录路径</td>
+<td>pwd</td>
+<td></td>
+</tr>
+<tr>
+<td>返回上一次所在目录</td>
+<td>cd -</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建目录</td>
+<td>mkdir xx</td>
+<td></td>
+</tr>
+<tr>
+<td>创建文件</td>
+<td>touch xx</td>
+<td></td>
+</tr>
+<tr>
+<td>复制</td>
+<td>cp [选项] 原文件 目标路径</td>
+<td>-r：递归，复制目录时必须有此选项<br>-p：保持原文件的权限、修改时间等属性不变</td>
+</tr>
+<tr>
+<td>移动</td>
+<td>mv [选项] 原文件 目标路径</td>
+<td></td>
+</tr>
+<tr>
+<td>删除</td>
+<td>rm [选项] 文件或目录</td>
+<td>-r：递归删除（含目录）<br>-f：强制删除</td>
+</tr>
+<tr>
+<td>删除空的目录</td>
+<td>rmdir xxx</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>由第一行开始显示文件内容</td>
+<td>cat xxx</td>
+<td>显示最后一屏内容</td>
+</tr>
+<tr>
+<td>从最后一行开始显示文件内容</td>
+<td>tac xxx</td>
+<td></td>
+</tr>
+<tr>
+<td>显示的时候，同时输出行号</td>
+<td>nl xxx</td>
+<td></td>
+</tr>
+<tr>
+<td>一页一页的显示文件内容(不支持回看)</td>
+<td>more</td>
+<td>Space：代表向下翻一页<br>b：往回翻页<br>Enter：向下翻一行<br>/xx：向下搜索xx<br>q：立刻离开 more</td>
+</tr>
+<tr>
+<td>一页一页的显示文件内容(支持回看)</td>
+<td>less</td>
+<td>Space或PgDn：代表向下翻一页<br>PgUp：往回翻页<br>/xx：向下搜索xx<br>?xx：向前搜索xx<br>q：立刻离开 more</td>
+</tr>
+<tr>
+<td>取出文件前面几行</td>
+<td>head -n 文件名</td>
+<td>-n ：后面接数字，代表显示几行</td>
+</tr>
+<tr>
+<td>取出文件后面几行</td>
+<td>tail -n 文件名</td>
+<td>-n ：后面接数字，代表显示几行</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>读写执行</td>
+<td>rwx</td>
+<td>r:读[4]<br>w:写[2]<br>x:执行[1]<br>-:没有权限[0]</td>
+</tr>
+<tr>
+<td>更改文件所属用户组</td>
+<td>chgrp [-R] 属组名 文件名</td>
+<td></td>
+</tr>
+<tr>
+<td>更改文件所属用户和所属用户组</td>
+<td>chown [–R] 属主名 文件名<br>chown [-R] 属主名：属组名 文件名</td>
+<td></td>
+</tr>
+<tr>
+<td>更改文件9个属性</td>
+<td>chmod [-R] 777 文件名</td>
+<td>-R : 进行递归(recursive)的持续变更</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://qiniu.rearib.top/20181806/1138-t.png" alt=""></p>
+<h3 id="目录对权限的使用"><a href="#目录对权限的使用" class="headerlink" title="目录对权限的使用"></a>目录对权限的使用</h3><ul>
+<li>读：是否可以查看该目录内部的文件信息</li>
+<li>写：是否可以给该目录创建、删除文件</li>
+<li>执行：指定用户是否可以cd进入该目录</li>
+</ul>
+<h2 id="用户和用户组管理"><a href="#用户和用户组管理" class="headerlink" title="用户和用户组管理"></a>用户和用户组管理</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>添加新的用户账号</td>
+<td>useradd [选项] 用户名</td>
+<td>会在home文件夹下创建一个名字为用户名的文件夹</td>
+</tr>
+<tr>
+<td>删除用户账号</td>
+<td>userdel [选项] 用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>修改用户账号</td>
+<td>usermod [选项] 用户名</td>
+<td></td>
+</tr>
+<tr>
+<td>修改用户密码</td>
+<td>passwd [选项] 用户名</td>
+<td>用户账号刚创建时没有口令，但是被系统锁定，必须设置口令后才能使用</td>
+</tr>
+<tr>
+<td>增加一个新的用户组</td>
+<td>groupadd [选项] 用户组</td>
+<td></td>
+</tr>
+<tr>
+<td>删除用户组</td>
+<td>groupdel 用户组</td>
+<td></td>
+</tr>
+<tr>
+<td>修改用户组的属性</td>
+<td>groupmod [选项] 用户组</td>
+</tr>
+</tbody>
+</table>
+<p>&emsp;&emsp;<strong>不同的用户在不同的组,所以对不同的文件有不同的操作权限,root只需要关心用户属于哪个组</strong><br><img src="http://qiniu.rearib.top/20181806/1025-U.png" alt=""><br>/etc/passwd存储的用户信息:<br><img src="http://qiniu.rearib.top/20181806/1030-V.png" alt=""></p>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查看文件系统的整体磁盘使用量</td>
+<td>df [选项] 目录或文件名</td>
+<td>-h ：以人们较易阅读的 GBytes, MBytes, KBytes 等格式自行显示</td>
+</tr>
+<tr>
+<td>查看文件和目录磁盘使用的空间</td>
+<td>du [选项] 目录或文件名</td>
+<td></td>
+</tr>
+<tr>
+<td>磁盘分区操作</td>
+<td>fdisk</td>
+<td>fdisk -l，系统将会把整个系统内能够搜寻到的装置的分区均列出来</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vim命令"><a href="#vim命令" class="headerlink" title="vim命令"></a>vim命令</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>移动到这个档案的第一行</td>
+<td>gg</td>
+<td></td>
+</tr>
+<tr>
+<td>移动到这个档案的最后一行</td>
+<td>G</td>
+<td></td>
+</tr>
+<tr>
+<td>光标移到该行最前面</td>
+<td>0或[home]</td>
+<td></td>
+</tr>
+<tr>
+<td>光标移到该行最后面</td>
+<td>$或[End]</td>
+<td></td>
+</tr>
+<tr>
+<td>屏幕向下移动一页</td>
+<td>[Ctrl] + [f]或[Page Down]</td>
+<td></td>
+</tr>
+<tr>
+<td>屏幕向上移动一页</td>
+<td>[Ctrl] + [b]或[Page Up]</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>向光标之下寻找一个名称为 word 的字符串</td>
+<td>/word</td>
+<td></td>
+</tr>
+<tr>
+<td>向光标之上寻找一个字符串名称为 word 的字符串</td>
+<td>?word</td>
+<td></td>
+</tr>
+<tr>
+<td>重复前一个搜寻的动作</td>
+<td>n</td>
+<td></td>
+</tr>
+<tr>
+<td>反向进行前一个搜寻动作</td>
+<td>N</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>删除游标所在的那一整行</td>
+<td>dd</td>
+<td></td>
+</tr>
+<tr>
+<td>复制游标所在的那一整行</td>
+<td>yy</td>
+<td></td>
+</tr>
+<tr>
+<td>使用word2替换word1</td>
+<td>:%s/word1/word2/g</td>
+<td>/gc表示需要确认</td>
+</tr>
+<tr>
+<td>后退(撤销)</td>
+<td>u</td>
+<td></td>
+</tr>
+<tr>
+<td>前进(重新执行)</td>
+<td>[Ctrl]+r</td>
+<td></td>
+</tr>
+<tr>
+<td>重复前一个动作</td>
+<td>.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>进入输入模式</td>
+<td>i</td>
+<td></td>
+</tr>
+<tr>
+<td>将编辑的数据写入硬盘档案中</td>
+<td>w</td>
+<td>w!为强制写入</td>
+</tr>
+<tr>
+<td>离开</td>
+<td>q</td>
+<td>q!为强制离开</td>
+</tr>
+<tr>
+<td>储存后离开</td>
+<td>:wq</td>
+<td>wq! 则为强制储存后离开</td>
+</tr>
+</tbody>
+</table>
+<h2 id="压缩文件"><a href="#压缩文件" class="headerlink" title="压缩文件"></a>压缩文件</h2><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>命令</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>打包并压缩文件</td>
+<td>tar -zcvf test.tar.gz ./test/</td>
+<td>打包后，以 gzip 压缩</td>
+</tr>
+<tr>
+<td>解压</td>
+<td>tar -zxvf test.tar.gz</td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他常用操作"><a href="#其他常用操作" class="headerlink" title="其他常用操作"></a>其他常用操作</h2><h3 id="查看各个命令的使用文档"><a href="#查看各个命令的使用文档" class="headerlink" title="查看各个命令的使用文档"></a>查看各个命令的使用文档</h3><blockquote>
+<p>man cp</p>
+</blockquote>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><blockquote>
+<p>find /home -name “*.txt”</p>
+<ul>
+<li>在/home目录下查找以.txt结尾的文件名，如果没有指定目录会在当前目录和子目录下查找（硬盘）<br>which ls</li>
+<li>定位/返回ls所在的路径(查找可执行文件)</li>
+</ul>
+</blockquote>
+<h3 id="软件操作命令"><a href="#软件操作命令" class="headerlink" title="软件操作命令"></a>软件操作命令</h3><ul>
+<li>软件管理包：yum</li>
+<li>安装软件：yum install xxx</li>
+<li>卸载软件：yum remove xxx</li>
+<li>搜索软件：yum search xxx</li>
+<li>清理缓存：yum clean packages</li>
+<li>列出已按照：yum list</li>
+<li>软件包信息：yum info xxx (yum info vim-commo) </li>
+</ul>
+<h3 id="服务器硬件资源和磁盘操作"><a href="#服务器硬件资源和磁盘操作" class="headerlink" title="服务器硬件资源和磁盘操作"></a>服务器硬件资源和磁盘操作</h3><ul>
+<li>内存：free -m</li>
+<li>硬盘：df -h</li>
+<li>负载：w/top</li>
+<li>cpu个数和核数：cat /proc/cpuinfo</li>
+</ul>
+<h3 id="log查看"><a href="#log查看" class="headerlink" title="log查看"></a>log查看</h3><ul>
+<li>日志以文本可以存储在“/var/log/”目录下后缀名为.log</li>
+</ul>
+<h3 id="查看所有进程"><a href="#查看所有进程" class="headerlink" title="查看所有进程"></a>查看所有进程</h3><blockquote>
+<p>ps aux | ps -ef</p>
+<ul>
+<li>查看所有进程<br>ps -ef | grep java</li>
+<li>查看所有进程里 CMD 是 java 的进程信息</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>ps aux 是用BSD的格式来显示 java这个进程</p>
+<ul>
+<li>显示的项目有：USER , PID , %CPU , %MEM , VSZ , RSS , TTY , STAT , START , TIME , COMMAND<br>ps -ef 是用标准的格式显示java这个进程</li>
+<li>显示的项目有：UID , PID , PPID , C , STIME , TTY , TIME , CMD</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>UID //用户ID、但输出的是用户名<br>PID //进程的ID<br>PPID //父进程ID<br>C //进程占用CPU的百分比<br>STIME //进程启动到现在的时间<br>TTY //该进程在那个终端上运行，若与终端无关，则显示? 若为 pts/0等，则表示由网络连接主机进程。<br>CMD //命令的名称和参数</p>
+</blockquote>
+<h3 id="kill-命令用于终止进程"><a href="#kill-命令用于终止进程" class="headerlink" title="kill 命令用于终止进程"></a>kill 命令用于终止进程</h3><blockquote>
+<p>kill -9 [PID]</p>
+<ul>
+<li>-9 表示强迫进程立即停止</li>
+</ul>
+</blockquote>
+<p><strong>通常用 ps 查看进程 PID ，用 kill 命令终止进程</strong></p>
+<h3 id="Linux-查看某个服务的端口"><a href="#Linux-查看某个服务的端口" class="headerlink" title="Linux 查看某个服务的端口"></a>Linux 查看某个服务的端口</h3><blockquote>
+<p>netstat -anp | grep ssh</p>
+</blockquote>
+<h3 id="查看以开放哪些端口"><a href="#查看以开放哪些端口" class="headerlink" title="查看以开放哪些端口"></a>查看以开放哪些端口</h3><blockquote>
+<p>netstat -nupl (UDP类型的端口)<br>netstat -ntpl (TCP类型的端口)</p>
+<ul>
+<li>端口不是独立存在的，它是依附于进程的。某个进程开启，那么它对应的端口就开启了，进程关闭，则该端口也就关闭了。下次若某个进程再次开启，则相应的端口也再次开启。而不要纯粹的理解为关闭掉某个端口，不过可以禁用某个端口。</li>
+<li>关掉对应的应用程序，则端口就自然关闭了</li>
+</ul>
+</blockquote>
+<h3 id="linux-中-find-和-grep-的区别"><a href="#linux-中-find-和-grep-的区别" class="headerlink" title="linux 中 find 和 grep 的区别"></a>linux 中 find 和 grep 的区别</h3><ul>
+<li>Linux 系统中 grep 命令是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。</li>
+<li>find 命令从指定的起始目录开始，递归地搜索其各个子目录，查找满足寻找条件的文件并对之采取相关的操作。</li>
+<li>grep 是查找匹配条件的行，find 是搜索匹配条件的文件</li>
+</ul>
+<h3 id="管道pipe"><a href="#管道pipe" class="headerlink" title="管道pipe"></a>管道pipe</h3><p>变量修饰器/管道：前者的输出是后者的输入参数。</p>
+<ul>
+<li>ls -l | wc //计算当前目录一共有多少个文件</li>
+<li>ls -l | head -10 //以详细列表形式查看当前目录下前10个文件</li>
+</ul>
+<h3 id="查看ip"><a href="#查看ip" class="headerlink" title="查看ip"></a>查看ip</h3><ul>
+<li>ifconfig</li>
+<li>ip addr</li>
+</ul>
+<h3 id="替换默认源"><a href="#替换默认源" class="headerlink" title="替换默认源"></a>替换默认源</h3><blockquote>
+<p>1、备份系统源<br>cd /etc/yum.repos.d<br>mv CentOS-Base.repo CentOS-Base.repo.bak</p>
+</blockquote>
+<p>2、设置默认源为163(注意linux版本为7.3)</p>
+<blockquote>
+<p>wget <a href="https://mirrors.163.com/.help/CentOS7-Base-163.repo" target="_blank" rel="noopener">https://mirrors.163.com/.help/CentOS7-Base-163.repo</a><br>mv CentOS7-Base-163.repo CentOS-Base.repo</p>
+</blockquote>
+<p>3、执行yum源更新</p>
+<blockquote>
+<p>yum clean all // 清除以前的缓存<br>yum makecache // 重建缓存<br>yum update //源的服务器更新了之后旧的包可能被新的替代了，所以需要yum update或者yum upgrade</p>
+</blockquote>
+<h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><blockquote>
+<p>su admin   输入密码<br><a href="https://www.cnblogs.com/xinjie10001/p/6295020.html" target="_blank" rel="noopener">传送门</a></p>
+</blockquote>
+<h2 id="Linux链接概念"><a href="#Linux链接概念" class="headerlink" title="Linux链接概念"></a>Linux链接概念</h2><p>&emsp;&emsp;Linux 链接分两种，一种被称为硬链接（Hard Link），另一种被称为符号链接（Symbolic Link）。默认情况下，ln 命令产生硬链接。</p>
+<h3 id="硬连接"><a href="#硬连接" class="headerlink" title="硬连接"></a>硬连接</h3><p>&emsp;&emsp;硬连接指通过索引节点来进行连接。在 Linux 的文件系统中，保存在磁盘分区中的文件不管是什么类型都给它分配一个编号，称为索引节点号(Inode Index)。在 Linux 中，多个文件名指向同一索引节点是存在的。比如：A 是 B 的硬链接（A 和 B 都是文件名），则 A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号相同，即一个 inode 节点对应两个不同的文件名，两个文件名指向同一个文件，A 和 B 对文件系统来说是完全平等的。删除其中任何一个都不会影响另外一个的访问。<br>&emsp;&emsp;硬连接的作用是允许一个文件拥有多个有效路径名，这样用户就可以建立硬连接到重要文件，以防止“误删”的功能。其原因如上所述，因为对应该目录的索引节点有一个以上的连接。只删除一个连接并不影响索引节点本身和其它的连接，只有当最后一个连接被删除后，文件的数据块及目录的连接才会被释放。也就是说，文件真正删除的条件是与之相关的所有硬连接文件均被删除。</p>
+<h3 id="软连接"><a href="#软连接" class="headerlink" title="软连接"></a>软连接</h3><p>&emsp;&emsp;另外一种连接称之为符号连接（Symbolic Link），也叫软连接。软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。比如：A 是 B 的软链接（A 和 B 都是文件名），A 的目录项中的 inode 节点号与 B 的目录项中的 inode 节点号不相同，A 和 B 指向的是两个不同的 inode，继而指向两块不同的数据块。但是 A 的数据块中存放的只是 B 的路径名（可以根据这个找到 B 的目录项）。A 和 B 之间是“主从”关系，如果 B 被删除了，A 仍然存在（因为两个是不同的文件），但指向的是一个无效的链接。<br><img src="http://qiniu.rearib.top/20181805/1205-y.png" alt=""><br>&emsp;&emsp;<strong>硬连接文件 f2 与原文件 f1 的 inode 节点相同，均为 9797648，然而符号连接文件的 inode 节点不同。</strong><br><img src="http://qiniu.rearib.top/20181805/1206-O.png" alt=""><br>&emsp;&emsp;<strong>当删除原始文件 f1 后，硬连接 f2 不受影响，但是符号连接 f1 文件无效</strong></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p> 1.删除符号连接f3,对f1,f2无影响；<br> 2.删除硬连接f2，对f1,f3也无影响；<br> 3.删除原文件f1，对硬连接f2没有影响，导致符号连接f3失效；<br> 4.同时删除原文件f1,硬连接f2，整个文件会真正的被删除。</p>
+<p><strong>软链接link</strong></p>
+<ul>
+<li>就是win的快捷方式:</li>
+<li>ln -s 源文件 软链接</li>
+<li>源文件 被删除，对应的软链接就变为”无效链接”，如果再创建一个同名源文件，软链接又恢复为有效链接文件。<br><strong>硬链接</strong></li>
+<li>ln [-d] 源文件 硬链接</li>
+<li>系统里边文件的名称(引用)就是硬链接,一个文件可以有多个名字，它们都是同一个文件实体的硬链接</li>
+<li>同一个文件实体可以创建多个文件名字，他们都是”硬链接”，好处是即使删除其中的一个名字，也可以保证文件实体被垃圾回收机制给收走。</li>
+<li>只有普通文件可以设置硬链接，目录不可以</li>
+<li>同一个源文件的所有硬链接文件必须 在同一个硬盘、同一个分区里边</li>
+<li>当 rm 一个文件的时候，那么此文件的硬链接数减1，当硬链接数为 0 的时候，文件被删除。<br><img src="http://qiniu.rearib.top/20181806/1100-e.png" alt=""></li>
+</ul>
+<h2 id="操作系统分区原理"><a href="#操作系统分区原理" class="headerlink" title="操作系统分区原理"></a>操作系统分区原理</h2><h3 id="win系统分区原理"><a href="#win系统分区原理" class="headerlink" title="win系统分区原理"></a>win系统分区原理</h3><p><img src="http://qiniu.rearib.top/20181806/0954-S.png" alt=""></p>
+<h3 id="linux系统分区原理"><a href="#linux系统分区原理" class="headerlink" title="linux系统分区原理"></a>linux系统分区原理</h3><p><img src="http://qiniu.rearib.top/20181806/0955-7.png" alt=""><br><img src="http://qiniu.rearib.top/20181806/1000-g.png" alt=""></p>
+<h2 id="ssh原理"><a href="#ssh原理" class="headerlink" title="ssh原理"></a>ssh原理</h2><p><a href="https://www.jianshu.com/p/33461b619d53" target="_blank" rel="noopener">https://www.jianshu.com/p/33461b619d53</a></p>
+</div><div class="tags"><a href="/tags/Linux/">Linux</a></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/2018/08/30/常用Markdown语法说明/" class="pre">常用Markdown语法说明</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux系统目录结构"><span class="toc-text">Linux系统目录结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bin-sbin-usr-sbin-usr-bin目录"><span class="toc-text">/bin,/sbin,/usr/sbin,/usr/bin目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录与文件"><span class="toc-text">目录与文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录对权限的使用"><span class="toc-text">目录对权限的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户和用户组管理"><span class="toc-text">用户和用户组管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#磁盘管理"><span class="toc-text">磁盘管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim命令"><span class="toc-text">vim命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#压缩文件"><span class="toc-text">压缩文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他常用操作"><span class="toc-text">其他常用操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看各个命令的使用文档"><span class="toc-text">查看各个命令的使用文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找"><span class="toc-text">查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件操作命令"><span class="toc-text">软件操作命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器硬件资源和磁盘操作"><span class="toc-text">服务器硬件资源和磁盘操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#log查看"><span class="toc-text">log查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看所有进程"><span class="toc-text">查看所有进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#kill-命令用于终止进程"><span class="toc-text">kill 命令用于终止进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-查看某个服务的端口"><span class="toc-text">Linux 查看某个服务的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看以开放哪些端口"><span class="toc-text">查看以开放哪些端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux-中-find-和-grep-的区别"><span class="toc-text">linux 中 find 和 grep 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管道pipe"><span class="toc-text">管道pipe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看ip"><span class="toc-text">查看ip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#替换默认源"><span class="toc-text">替换默认源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换用户"><span class="toc-text">切换用户</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux链接概念"><span class="toc-text">Linux链接概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#硬连接"><span class="toc-text">硬连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软连接"><span class="toc-text">软连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作系统分区原理"><span class="toc-text">操作系统分区原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#win系统分区原理"><span class="toc-text">win系统分区原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux系统分区原理"><span class="toc-text">linux系统分区原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh原理"><span class="toc-text">ssh原理</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/11/01/web-前端开发之HTML/">web-前端开发html</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/31/python-RabbitMQ 安装、基本示例、轮询机制/">python-RabbitMQ 安装、基本示例、轮询机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/31/RabbirMQ-win10环境下的安装/">RabbirMQ-win10环境下的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/工具-ShareX+七牛云实现私有图床/">工具-ShareX+七牛云实现私有图床</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/python-事件驱动和IO介绍/">python-事件驱动和IO介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/python-协程/">python-协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/python-多进程/">python-多进程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/python-队列与生产者消费者模式/">python-队列与生产者消费者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/26/python-线程与进程/">python-线程与进程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/使用vagrant搭建虚拟开发环境/">使用vagrant搭建虚拟开发环境</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/django项目/" style="font-size: 15px;">django项目</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/django/" style="font-size: 15px;">django</a> <a href="/tags/文本编辑/" style="font-size: 15px;">文本编辑</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/RabbitMQ/" style="font-size: 15px;">RabbitMQ</a> <a href="/tags/Mxonline/" style="font-size: 15px;">Mxonline</a> <a href="/tags/工具/" style="font-size: 15px;">工具</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/xadmin/" style="font-size: 15px;">xadmin</a> <a href="/tags/项目部署/" style="font-size: 15px;">项目部署</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.tendcode.com/" title="Tendcode" target="_blank">Tendcode</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">Rearib.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7c7a5758117d8eb934731041ec33d337";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>
