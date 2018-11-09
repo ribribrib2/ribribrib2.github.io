@@ -81,26 +81,6 @@
   </entry>
   
   <entry>
-    <title>工具-ShareX+七牛云实现私有图床</title>
-    <link href="http://yoursite.com/2018/10/29/%E5%B7%A5%E5%85%B7-ShareX+%E4%B8%83%E7%89%9B%E4%BA%91%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E5%9B%BE%E5%BA%8A/"/>
-    <id>http://yoursite.com/2018/10/29/工具-ShareX+七牛云实现私有图床/</id>
-    <published>2018-10-29T01:33:42.000Z</published>
-    <updated>2018-10-29T08:53:51.414Z</updated>
-    
-    <content type="html"><![CDATA[<p>&emsp;&emsp;所谓图床，就是专门用来存放图片，同时允许你把图片对外连接的网上空间，通过访问链接就能直接查看或者分享图片，特别是个人博客的图片存储需要一个方便高效的私有图床，今天介绍一个通过ShareX+七牛云实现私有图床的方法。<br><a id="more"></a></p><h2 id="什么是七牛云"><a href="#什么是七牛云" class="headerlink" title="什么是七牛云"></a>什么是七牛云</h2><p>&emsp;&emsp;七牛云是国内一家领先的云存储公司，可以利用七牛云存储对象存储图片并生成外链。官网<a href="http://www.qiniu.com/" target="_blank" rel="noopener">地址</a>，注册后会赠送10G的免费空间.</p><h2 id="什么是ShareX"><a href="#什么是ShareX" class="headerlink" title="什么是ShareX"></a>什么是ShareX</h2><p>&emsp;&emsp;截图，这种再寻常不过的事情。有着很多的软件供我们选择，从常用的QQ到使用Snipaste。不光截图的方式多种多样，从处理截图，到上传截图到网络，都有软件能为你服务。但是，从截图，到处理截图，再到上传截图，至少需要用到两个软件。但是一个ShareX就能全部搞定。</p><h2 id="用ShareX-qiniu一键截图上传配置"><a href="#用ShareX-qiniu一键截图上传配置" class="headerlink" title="用ShareX+qiniu一键截图上传配置"></a>用ShareX+qiniu一键截图上传配置</h2><h3 id="1-sharex下载"><a href="#1-sharex下载" class="headerlink" title="1. sharex下载"></a>1. <a href="https://getsharex.com/" target="_blank" rel="noopener">sharex</a>下载</h3><p>&emsp;&emsp;安装后打开如图<br><img src="http://qiniu.rearib.top/20181829/1616-F.png" alt=""></p><h3 id="2-设置图片上传"><a href="#2-设置图片上传" class="headerlink" title="2. 设置图片上传"></a>2. 设置图片上传</h3><p>&emsp;&emsp;打开 shareX -&gt; 目的地 -&gt; 目的地设置 -&gt; 自定义上传（最底下）</p><p><img src="http://qiniu.rearib.top/20181829/1619-B.png" alt=""></p><ul><li>上传者：填入 qiniu，点击添加</li><li>请求 URL：进入自己的「对象存储」-&gt; 空间设置 -&gt; 存储区域，查看自己所在地区。根据 <a href="https://developer.qiniu.com/kodo/manual/1671/region-endpoint" target="_blank" rel="noopener">存储区域 - 七牛开发者中心</a> 选择自己的地址，我是华东，填入 up.qiniup.com</li><li>URL（右侧靠下）:自己的外链默认域名 + $json:key$ -&gt; xxxxx.bkt.clouddn.com/$json:key$</li><li><strong>上图中我的默认域名修改成了自己的默认域名qiniu.rearib.top</strong></li></ul><h3 id="3-重点：生成-token"><a href="#3-重点：生成-token" class="headerlink" title="3. 重点：生成 token"></a><font color="red">3. 重点：生成 token</font></h3><p>下载生成<a href="http://moi.oss-cn-hangzhou.aliyuncs.com/qiniutoken-windows.7z" target="_blank" rel="noopener">工具</a><br>下载生成工具后执行：</p><blockquote><p>qiniutoken.exe -ak=[AccessKey] -sk=[SecretKey] -bk=[bucket]</p></blockquote><p>AccessKey和SecretKey登录七牛云-个人面板-秘钥管理-AK|SK</p><p>bucket是存储空间名字</p><p><strong>参数</strong></p><p>&emsp;&emsp;在「参数」下有两个输入空框</p><table><thead><tr><th>左框</th><th>右框</th></tr></thead><tbody><tr><td>token</td><td>上部生成的 token</td></tr><tr><td>key</td><td>%yy%d%h%mi%s.png</td></tr><tr><td>file</td><td>$input$</td></tr></tbody></table><ul><li>key 为上传时用的文件名，%yy%d%h%mi%s.png 是指年月日小时分钟秒，如 20180213165812.png</li></ul><h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>&emsp;&emsp;都配置完后，点击左侧「图片上传」-「测试」，若测试结果返回一个正常的连接地址那就是配置成功了。<br><img src="http://qiniu.rearib.top/20181829/1644-W.png" alt=""><br>&emsp;&emsp;设置上传地址：sharex -&gt; 目的地 -&gt; 图片上传 -&gt; 自定义图像上传</p><p>&emsp;&emsp;截图后的动作 -&gt; 上传图片</p><p>按下快捷键截图后会自动上传并把七牛云返回的外链放到剪切板，成功后会有提示音并显示状态.<br><img src="http://qiniu.rearib.top/20181829/1648-M.png" alt=""><br>打开浏览器粘贴<br><img src="http://qiniu.rearib.top/20181829/1650-k.png" alt=""></p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>1、<a href="http://du.zoomquiet.io/2018-02/sharex-qiniu/" target="_blank" rel="noopener">用 ShareX qiniu 一键截图上传</a></p><p>2、<a href="https://ystyle.top/2017/07/05/share-the-use-of-qiniu-file-upload/" target="_blank" rel="noopener">ShareX使用七牛文件上传</a></p><p>3、<a href="http://www.majianwei.com/archives/6660" target="_blank" rel="noopener">ShaseX</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&amp;emsp;&amp;emsp;所谓图床，就是专门用来存放图片，同时允许你把图片对外连接的网上空间，通过访问链接就能直接查看或者分享图片，特别是个人博客的图片存储需要一个方便高效的私有图床，今天介绍一个通过ShareX+七牛云实现私有图床的方法。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
     <title>python-事件驱动和IO介绍</title>
     <link href="http://yoursite.com/2018/10/29/python-%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8CIO%E4%BB%8B%E7%BB%8D/"/>
     <id>http://yoursite.com/2018/10/29/python-事件驱动和IO介绍/</id>
@@ -141,6 +121,26 @@
     
     
       <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>工具-ShareX+七牛云实现私有图床</title>
+    <link href="http://yoursite.com/2018/10/29/%E5%B7%A5%E5%85%B7-ShareX+%E4%B8%83%E7%89%9B%E4%BA%91%E5%AE%9E%E7%8E%B0%E7%A7%81%E6%9C%89%E5%9B%BE%E5%BA%8A/"/>
+    <id>http://yoursite.com/2018/10/29/工具-ShareX+七牛云实现私有图床/</id>
+    <published>2018-10-29T01:33:42.000Z</published>
+    <updated>2018-10-29T08:53:51.414Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;所谓图床，就是专门用来存放图片，同时允许你把图片对外连接的网上空间，通过访问链接就能直接查看或者分享图片，特别是个人博客的图片存储需要一个方便高效的私有图床，今天介绍一个通过ShareX+七牛云实现私有图床的方法。<br><a id="more"></a></p><h2 id="什么是七牛云"><a href="#什么是七牛云" class="headerlink" title="什么是七牛云"></a>什么是七牛云</h2><p>&emsp;&emsp;七牛云是国内一家领先的云存储公司，可以利用七牛云存储对象存储图片并生成外链。官网<a href="http://www.qiniu.com/" target="_blank" rel="noopener">地址</a>，注册后会赠送10G的免费空间.</p><h2 id="什么是ShareX"><a href="#什么是ShareX" class="headerlink" title="什么是ShareX"></a>什么是ShareX</h2><p>&emsp;&emsp;截图，这种再寻常不过的事情。有着很多的软件供我们选择，从常用的QQ到使用Snipaste。不光截图的方式多种多样，从处理截图，到上传截图到网络，都有软件能为你服务。但是，从截图，到处理截图，再到上传截图，至少需要用到两个软件。但是一个ShareX就能全部搞定。</p><h2 id="用ShareX-qiniu一键截图上传配置"><a href="#用ShareX-qiniu一键截图上传配置" class="headerlink" title="用ShareX+qiniu一键截图上传配置"></a>用ShareX+qiniu一键截图上传配置</h2><h3 id="1-sharex下载"><a href="#1-sharex下载" class="headerlink" title="1. sharex下载"></a>1. <a href="https://getsharex.com/" target="_blank" rel="noopener">sharex</a>下载</h3><p>&emsp;&emsp;安装后打开如图<br><img src="http://qiniu.rearib.top/20181829/1616-F.png" alt=""></p><h3 id="2-设置图片上传"><a href="#2-设置图片上传" class="headerlink" title="2. 设置图片上传"></a>2. 设置图片上传</h3><p>&emsp;&emsp;打开 shareX -&gt; 目的地 -&gt; 目的地设置 -&gt; 自定义上传（最底下）</p><p><img src="http://qiniu.rearib.top/20181829/1619-B.png" alt=""></p><ul><li>上传者：填入 qiniu，点击添加</li><li>请求 URL：进入自己的「对象存储」-&gt; 空间设置 -&gt; 存储区域，查看自己所在地区。根据 <a href="https://developer.qiniu.com/kodo/manual/1671/region-endpoint" target="_blank" rel="noopener">存储区域 - 七牛开发者中心</a> 选择自己的地址，我是华东，填入 up.qiniup.com</li><li>URL（右侧靠下）:自己的外链默认域名 + $json:key$ -&gt; xxxxx.bkt.clouddn.com/$json:key$</li><li><strong>上图中我的默认域名修改成了自己的默认域名qiniu.rearib.top</strong></li></ul><h3 id="3-重点：生成-token"><a href="#3-重点：生成-token" class="headerlink" title="3. 重点：生成 token"></a><font color="red">3. 重点：生成 token</font></h3><p>下载生成<a href="http://moi.oss-cn-hangzhou.aliyuncs.com/qiniutoken-windows.7z" target="_blank" rel="noopener">工具</a><br>下载生成工具后执行：</p><blockquote><p>qiniutoken.exe -ak=[AccessKey] -sk=[SecretKey] -bk=[bucket]</p></blockquote><p>AccessKey和SecretKey登录七牛云-个人面板-秘钥管理-AK|SK</p><p>bucket是存储空间名字</p><p><strong>参数</strong></p><p>&emsp;&emsp;在「参数」下有两个输入空框</p><table><thead><tr><th>左框</th><th>右框</th></tr></thead><tbody><tr><td>token</td><td>上部生成的 token</td></tr><tr><td>key</td><td>%yy%d%h%mi%s.png</td></tr><tr><td>file</td><td>$input$</td></tr></tbody></table><ul><li>key 为上传时用的文件名，%yy%d%h%mi%s.png 是指年月日小时分钟秒，如 20180213165812.png</li></ul><h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h3><p>&emsp;&emsp;都配置完后，点击左侧「图片上传」-「测试」，若测试结果返回一个正常的连接地址那就是配置成功了。<br><img src="http://qiniu.rearib.top/20181829/1644-W.png" alt=""><br>&emsp;&emsp;设置上传地址：sharex -&gt; 目的地 -&gt; 图片上传 -&gt; 自定义图像上传</p><p>&emsp;&emsp;截图后的动作 -&gt; 上传图片</p><p>按下快捷键截图后会自动上传并把七牛云返回的外链放到剪切板，成功后会有提示音并显示状态.<br><img src="http://qiniu.rearib.top/20181829/1648-M.png" alt=""><br>打开浏览器粘贴<br><img src="http://qiniu.rearib.top/20181829/1650-k.png" alt=""></p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>1、<a href="http://du.zoomquiet.io/2018-02/sharex-qiniu/" target="_blank" rel="noopener">用 ShareX qiniu 一键截图上传</a></p><p>2、<a href="https://ystyle.top/2017/07/05/share-the-use-of-qiniu-file-upload/" target="_blank" rel="noopener">ShareX使用七牛文件上传</a></p><p>3、<a href="http://www.majianwei.com/archives/6660" target="_blank" rel="noopener">ShaseX</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;所谓图床，就是专门用来存放图片，同时允许你把图片对外连接的网上空间，通过访问链接就能直接查看或者分享图片，特别是个人博客的图片存储需要一个方便高效的私有图床，今天介绍一个通过ShareX+七牛云实现私有图床的方法。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -444,6 +444,29 @@
     
     
       <category term="Linux" scheme="http://yoursite.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记-DRF视图</title>
+    <link href="http://yoursite.com/2018/07/30/%E7%AC%94%E8%AE%B0-DRF%E8%A7%86%E5%9B%BE/"/>
+    <id>http://yoursite.com/2018/07/30/笔记-DRF视图/</id>
+    <published>2018-07-30T13:10:19.000Z</published>
+    <updated>2018-11-09T14:48:36.512Z</updated>
+    
+    <content type="html"><![CDATA[<p>从数据库拿到数据是QuerySet,<br>如果使用HttpResponse返回,需要传入序列化后的数据,并指明是json格式<br>return HttpResponse(json.dumps(json_list),content_type=’application/json’)<br>json_list是list格式<br><img src="http://qiniu.rearib.top/20181809/1059-w.png" alt=""></p><p>当字段比较多时，一个字段一个字段的提取很麻烦，可以用model_to_dict，将model整个转化为dict</p><p>但是这样有个问题，就是ImageFieldFile 和add_time字段不能序列化</p><p>django的serializers可以把所有字段序列化</p><p>json_data = serializers.serialize(‘json’,goods)<br>return HttpResponse(json_data,content_type=’application/json’)<br>结果:<br><img src="http://qiniu.rearib.top/20181809/1104-S.png" alt=""></p><p>不过json数据返回可以使用JsonResponse,它会自己去序列化,因为已经使用serialize序列化了,需要反序列化再传入,<br>json_data = serializers.serialize(‘json’,goods)<br>json_data = json.loads(json_data)<br>return JsonResponse(json_data,safe=False)</p><p>查看源码可知,默认safe为True,如果传入为非dict会报错<br>为了允许非dict对象被序列化，请将safe参数设置为False。</p><p>测试返回结果一致</p><p>django的serializer虽然可以很简单实现序列化，但是有几个缺点</p><p>字段序列化定死的，要想重组的话非常麻烦<br>从上面截图可以看出来，images保存的是一个相对路径，我们还需要补全路径，而这些drf都可以帮助我们做到</p><p>class GoodsSerializer(serializers.Serializer):<br>    name = serializers.CharField(required=True,max_length=100)<br>    click_num = serializers.IntegerField(default=0)<br>    goods_front_image = serializers.ImageField()</p><p>class GoodsListView(APIView):<br>    ‘’’<br>    商品列表<br>    ‘’’<br>    def get(self,request,format=None):<br>        goods = Goods.objects.all()<br>        goods_serialzer = GoodsSerializer(goods,many=True)#单个对象不用配置many<br>        return Response(goods_serialzer.data)#这是DRF的Response</p><p><img src="http://qiniu.rearib.top/20181809/1130-Z.png" alt=""><br>goods_serialzer.data:<br>[OrderedDict([(‘name’, ‘新鲜水果甜蜜香脆单果约800克’), (‘click_num’, 0), (‘good_front_image’, ‘/media/goods/images/1_P_1449024889889.jpg’)]), OrderedDict([(‘name’, ‘新鲜水果甜蜜香脆单果约800克’), (‘click_num’, 0), (‘good_front_image’, ‘/media/goods/images/1_P_1449024889889.jpg’)]), OrderedDict([(‘name’, ‘田然牛肉大黄瓜条生鲜牛肉冷冻真空黄牛’), (‘click_num’, 0), (‘good_front_image’, ‘/media/goods/images/2_P_1448945810202.jpg’)]), OrderedDict([(‘name’, ‘酣畅家庭菲力牛排10片澳洲生鲜牛肉团购套餐’), (‘click_num’, 0), (‘good_front_image’, ‘/media/goods/images/7_P_1448945104883.jpg’)]), OrderedDict([(‘name’, ‘日本蒜蓉粉丝扇贝270克6只装’), (‘click_num’, 0), (‘good_front_image’, ‘/media/goods/images/47_P_1448946213263.jpg’)])]</p><p>上面是请求数据,如果需要创建字段,<br>先写一个post:<br><img src="http://qiniu.rearib.top/20181809/1143-X.png" alt=""><br>这里的request是DRF的,比django自带的request更强大,<br>在serialzer.save()会调用create方法,不过需要覆盖create方法<br><img src="http://qiniu.rearib.top/20181809/1140-b.png" alt=""></p><p>validated_data是上面3个字段清洗过的数据</p><p>查看使用DRF进行序列化后的结果:<br><img src="http://qiniu.rearib.top/20181809/1652-k.png" alt=""><br>会自动补全图片路径</p><p>上面是用Serializer实现的，需要自己手动添加字段，如果用Modelserializer，会更加的方便，直接用<strong>all</strong>就可以全部序列化</p><h1 id="ModelSerializer实现商品列表页"><a href="#ModelSerializer实现商品列表页" class="headerlink" title="ModelSerializer实现商品列表页"></a>ModelSerializer实现商品列表页</h1><p>class GoodsSerializer(serializers.ModelSerializer):<br>    class Meta:<br>        model = Goods<br>        fields = ‘<strong>all</strong>‘</p><p>查看结果:<br><img src="http://qiniu.rearib.top/20181809/1654-t.png" alt=""></p><p>如果有嵌套,比如商品类别:<br>class GoodsCategorySerializer(serializers.ModelSerializer):<br>    class Meta:<br>        model = GoodsCategory<br>        fields = “<strong>all</strong>“</p><p>class GoodsSerializer(serializers.ModelSerializer):<br>    category = GoodsCategorySerializer()<br>    class Meta:<br>        model = Goods<br>        fields = “<strong>all</strong>“<br>结果:<br><img src="http://qiniu.rearib.top/20181809/1656-w.png" alt=""></p><p>现在View是继承DRF的APIView,我们可以调用更上层的View:<br>现在来继承mixins和generic一起用:<br>class GoodsListView(mixins.ListModelMixin,generics.GenericAPIView):</p><p>class GenericAPIView(views.APIView):<br>GenericAPIView继承APIView，封装了很多方法，比APIView功能更强大<br>class ListModelMixin(object):</p><p>GenericAPIView用的时候需要定义queryset和serializer_class<br>GenericAPIView里面默认为空<br>queryset = None<br>serializer_class = None</p><p>ListModelMixin里面list方法帮我们做好了分页和序列化的工作，只要调用就好了</p><p>from goods.serializers import GoodsSerializer<br>from .models import Goods<br>from rest_framework.response import Response<br>from rest_framework import mixins<br>from rest_framework import generics<br>class GoodsListView(mixins.ListModelMixin,generics.GenericAPIView):<br>    ‘商品列表页’<br>    queryset = Goods.objects.all()<br>    serializer_class = GoodsSerializer</p><pre><code>def get(self,request,*args,**kwargs):    return self.list(request,*args,**kwargs)</code></pre><p>定义queryset和serializer_class,r后写get方法,会调用list,在list中才会去序列化或者分页.</p><p>如果不写get<br><img src="http://qiniu.rearib.top/20181809/1729-k.png" alt=""></p><p>上面的代码优化，可以直接继承ListAPIView，ListAPIView主要做了两件事:</p><p>ListAPIView(mixins.ListModelMixin,GenericAPIView)继承了这两个类并写好了get方法<br><img src="http://qiniu.rearib.top/20181809/1729-M.png" alt=""><br>所以最后列表页代码:<br>class GoodsListView(generics.ListAPIView):<br>    ‘商品列表页’<br>    queryset = Goods.objects.all()<br>    serializer_class = GoodsSerializer</p><p>添加分页功能<br>先看rest_framework/settings.py源码，里面可以找到如何配置：比如认证、权限和分页等等<br><img src="http://qiniu.rearib.top/20181809/1738-D.png" alt=""><br>在自己的settings.py中添加分页:<br>REST_FRAMEWORK = {</p><pre><code>#分页&apos;DEFAULT_PAGINATION_CLASS&apos;: &apos;rest_framework.pagination.PageNumberPagination&apos;,#每页显示的个数&apos;PAGE_SIZE&apos;: 10,</code></pre><p>}<br><img src="http://qiniu.rearib.top/20181809/1740-d.png" alt=""></p><p>当然也可以自定义分页:<br><img src="http://qiniu.rearib.top/20181809/1741-N.png" alt=""></p><p>首先pagination_class是继承于GenericAPIView,<br>class PageNumberPagination(BasePagination):<br>中修改自定义参数</p><p>大boss要出来了</p><p>viewsets:<br>class GenericViewSet(ViewSetMixin, generics.GenericAPIView):<br>class ViewSetMixin(object):<br>重写了as_view方法–&gt;会影响到url注册</p><p>所以继承viewsets.GenericViewSet,但是这里和之前的GenericAPIView区别只在于修改as_view,所以对于get等还需要继承mixins.ListModelMixin<br>class GoodsListViewSet(mixins.ListModelMixin,viewsets.GenericViewSet)</p><p>把get和list绑定<br><img src="http://qiniu.rearib.top/20181809/1756-o.png" alt=""><br>    url(‘goods/‘,good_list,name=’goods-list’),</p><p>更简便可以使用Router<br><img src="http://qiniu.rearib.top/20181809/1949-x.png" alt=""></p><p>在注册的时候会自动把get转到list上去</p><p>drf的APIView、GenericView、viewsets和router的原理分析<br><img src="http://qiniu.rearib.top/20181809/1951-r.png" alt=""><br><img src="http://qiniu.rearib.top/20181809/1952-p.png" alt=""><br><img src="http://qiniu.rearib.top/20181809/1953-M.png" alt=""></p><p>APIview –&gt; genericview  添加了比如分页\过滤\queryset\serializer_class等<br>genericview + mixins –&gt;得到各种组合ListAPIView(完成get与list的绑定)<br>genericview + viewsetmixins –&gt; 修改as_view,使用另一种绑定方式</p><p><img src="http://qiniu.rearib.top/20181809/2240-Z.png" alt=""><br><img src="http://qiniu.rearib.top/20181809/2240-J.png" alt=""><br>parsers可以解析提交或发过来的各种类型的数据<br><img src="http://qiniu.rearib.top/20181809/2242-r.png" alt=""><br>response根据前端要求返回不同类型的数据 比如网页形式还是json形式等<br><img src="http://qiniu.rearib.top/20181809/2244-Q.png" alt=""></p><p><a href="https://www.cnblogs.com/derek1184405959/p/8768059.html" target="_blank" rel="noopener">笔记参考</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;从数据库拿到数据是QuerySet,&lt;br&gt;如果使用HttpResponse返回,需要传入序列化后的数据,并指明是json格式&lt;br&gt;return HttpResponse(json.dumps(json_list),content_type=’application/js
+      
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="http://yoursite.com/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
