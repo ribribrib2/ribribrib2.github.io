@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/09/01/django-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</loc>
+    
+    <lastmod>2018-12-04T01:09:31.283Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/11/29/DRF-%E4%BB%80%E4%B9%88%E6%98%AFRESTful%20API/</loc>
+    
+    <lastmod>2018-11-29T06:37:45.911Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/10/29/python-%E5%85%A5%E9%97%A8%E5%92%8C%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2018-11-24T05:53:16.631Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/11/21/%E7%88%AC%E8%99%AB-%E8%A7%86%E9%A2%91%E6%88%AA%E5%9B%BE/</loc>
+    
+    <lastmod>2018-11-22T06:05:55.681Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/11/11/DRF-Mixins%E4%BB%8B%E7%BB%8D/</loc>
+    
+    <lastmod>2018-11-19T13:31:21.722Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/10/10/django-Oauth2.0%E5%8D%8F%E8%AE%AE%E6%8E%A2%E7%A9%B6/</loc>
+    
+    <lastmod>2018-11-13T09:09:26.303Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/07/30/%E7%AC%94%E8%AE%B0-DRF%E8%A7%86%E5%9B%BE/</loc>
     
-    <lastmod>2018-11-09T14:48:36.512Z</lastmod>
+    <lastmod>2018-11-11T10:51:44.564Z</lastmod>
     
   </url>
   
