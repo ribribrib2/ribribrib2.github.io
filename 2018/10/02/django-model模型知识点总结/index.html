@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="个人的技术分享和生活点滴记录"><meta name="keywords" content="Rearib"><title>django-model模型知识点总结 | Rearib的个人博客</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">django-model模型知识点总结</h1><a id="logo" href="/.">Rearib的个人博客</a><p class="description">一生温暖纯良，不舍爱与自由</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Arama"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">django-model模型知识点总结</h1><div class="post-meta"><a href="/2018/10/02/django-model模型知识点总结/#comments" class="comment-count"></a><p><span class="date">Oct 02, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h2 id="model梳理与难点剖析"><a href="#model梳理与难点剖析" class="headerlink" title="model梳理与难点剖析"></a>model梳理与难点剖析</h2><h3 id="Python操作数据库"><a href="#Python操作数据库" class="headerlink" title="Python操作数据库"></a>Python操作数据库</h3><p>&emsp;&emsp;用Python语法来写，然后使用一个中间工具将Python代码翻译成原生的SQL语句，这个中间工具就是所谓的ORM（对象关系映射）！ORM将一个Python的对象映射为数据库中的一张关系表。它将SQL封装起来，程序员不再需要关心数据库的具体操作，只需要专注于自己本身代码和业务逻辑的实现。于是，整体的实现过程就是：Python代码，通过ORM转换成SQL语句，再通过pymysql去实际操作数据库。<br>&emsp;&emsp;最典型的ORM就是<a href="www.sqlalchemy.org">SQLAlchemy</a>了，但是Django自带ORM系统，不需要额外安装别的ORM。</p>
+<h3 id="字段选项和字段类型"><a href="#字段选项和字段类型" class="headerlink" title="字段选项和字段类型"></a>字段选项和字段类型</h3><blockquote>
+<p>阅读文章 </p>
+</blockquote>
+<ul>
+<li><a href="https://yiyibooks.cn/xx/Django_1.11.6/ref/models/fields.html" target="_blank" rel="noopener">官方文档</a></li>
+<li><a href="http://www.liujiangblog.com/course/django/94" target="_blank" rel="noopener">刘江的个人博客</a></li>
+</ul>
+<blockquote>
+<p>null和Black的区别:</p>
+</blockquote>
+<p>&emsp;&emsp;如果null为True，Django将在数据库中将空值存储为NUL，blank=True，表单验证时将允许输入空值，null 纯粹是数据库范畴的概念，而blank 是数据验证范畴的。</p>
+<blockquote>
+<p>自增字段</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id = models.AutoField(primary_key=True)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>auto_now_add和auto_add</p>
+</blockquote>
+<ul>
+<li>auto_now:每当对象被保存时将字段设为当前日期，常用于保存最后修改时间。</li>
+<li>auto_now_add：每当对象被创建时，设为当前日期，常用于保存创建日期(注意，它是不可修改的)。<blockquote>
+<p>db_column字段列名称</p>
+</blockquote>
+</li>
+</ul>
+<p>&emsp;&emsp;数据库中用db_column来表示该字段的列名称。 如果未指定，那么Django将会使用字段名作为列名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id = models.AutoField(max_length=11,db_column=&apos;UID&apos;,primary_key=True)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>unique_for_date</p>
+</blockquote>
+<p>&emsp;&emsp;如果你有一个title 字段设置unique_for_date=”pub_date”，那么Django 将不允许两个记录具有相同的title 和pub_date。unique_for_month类似unique_for_date，只是要求字段对于月份是唯一的。</p>
+<blockquote>
+<p>upload_to</p>
+</blockquote>
+<p>&emsp;&emsp;用于设置上传地址的目录和文件名:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class MyModel(models.Model):</span><br><span class="line">    # 文件被传至`MEDIA_ROOT/uploads`目录，MEDIA_ROOT由你在settings文件中设置</span><br><span class="line">    upload = models.FileField(upload_to=&apos;uploads/&apos;)</span><br><span class="line">    # 或者</span><br><span class="line">    # 被传到`MEDIA_ROOT/uploads/2015/01/30`目录，增加了一个时间划分</span><br><span class="line">    upload = models.FileField(upload_to=&apos;uploads/%Y/%m/%d/&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;也可以接收回调函数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def user_directory_path(instance, filename):</span><br><span class="line">    #文件上传到MEDIA_ROOT/user_&lt;id&gt;/&lt;filename&gt;目录中</span><br><span class="line">    return &apos;user_&#123;0&#125;/&#123;1&#125;&apos;.format(instance.user.id, filename)</span><br><span class="line"></span><br><span class="line">class MyModel(models.Model):</span><br><span class="line">    upload = models.FileField(upload_to=user_directory_path)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>评论系统的外键</p>
+</blockquote>
+<p>&emsp;&emsp;什么时候需要自己引用自己的外键呢？典型的例子就是评论系统！一条评论可以被很多人继续评论:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parent_comment = models.ForeignKey(&apos;self&apos;, on_delete=models.CASCADE)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>choice</p>
+</blockquote>
+<p>&emsp;&emsp;在choices中，每个元组中的第一个元素，是存储在数据库中的值；第二个元素是使人容易理解的描述。给定一个模型实例，可以使用get_FOO_display()方法来访问选项字段的显示值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">YEAR_IN_SCHOOL_CHOICES = (</span><br><span class="line">    (&apos;FR&apos;, &apos;Freshman&apos;),</span><br><span class="line">    (&apos;SO&apos;, &apos;Sophomore&apos;),</span><br><span class="line">    (&apos;JR&apos;, &apos;Junior&apos;),</span><br><span class="line">    (&apos;SR&apos;, &apos;Senior&apos;),</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>related_name和related_query_name的使用：<a href="https://yiyibooks.cn/xx/Django_1.11.6/topics/db/models.html#abstract-related-name" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<p>&emsp;&emsp;假如有下面两个模型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Person(models.Model);</span><br><span class="line">    name = models.CharField(verbose_name=&apos;作者姓名&apos;, max_length=10)</span><br><span class="line">    age = models.IntegerField(verbose_name=&apos;作者年龄&apos;)</span><br><span class="line"></span><br><span class="line">class Book(models.Model):</span><br><span class="line">    person = models.ForeignKey(Person, related_name=&apos;person_book&apos;)</span><br><span class="line">    title = models.CharField(verbose_name=&apos;书籍名称&apos;, max_length=10)</span><br><span class="line">    pubtime = models.DateField(verbose_name=&apos;出版时间&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;如果我们要查询一个作者出版了哪些书籍的话,先查询到作者的信息,<code>person = Person.objects.fiter(你的条件)</code>,返回一个person对象,然后反向查询:<code>book = person.book_set.all()</code>,但是如果定义了<code>related_name</code>,就可以使用<code>person.person_books.all()</code>。</p>
+<blockquote>
+<p>关联关系字段</p>
+<ul>
+<li>on_delete设置</li>
+</ul>
+</blockquote>
+<p> &emsp;&emsp;ForeignKey.on_delete：当删除由ForeignKey引用的对象时，Django将模拟由on_delete参数指定的SQL约束的行为。</p>
+<ul>
+<li><p>through和through_fields的作用</p>
+<p>&emsp;&emsp;ManyToMany时会自动创建第三张表用于管理多对多关系，如果想在第三张表添加额外字段，可以使用through：<a href="http://www.cnblogs.com/linyuhong/p/9640078.html" target="_blank" rel="noopener">参考链接</a><br>&emsp;&emsp;当中间模型具有多个外键指向多对多关联关系模型中的任何一个（或两个），你必须指定through_fields：<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/fields.html#manytomanyfield" target="_blank" rel="noopener">官方文档</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Person(models.Model):</span><br><span class="line">    name = models.CharField(max_length=50)</span><br><span class="line"></span><br><span class="line">class Group(models.Model):</span><br><span class="line">    name = models.CharField(max_length=128)</span><br><span class="line">    members = models.ManyToManyField(</span><br><span class="line">        Person,</span><br><span class="line">        through=&apos;Membership&apos;,</span><br><span class="line">        through_fields=(&apos;group&apos;, &apos;person&apos;),</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">class Membership(models.Model):</span><br><span class="line">    group = models.ForeignKey(Group, on_delete=models.CASCADE)</span><br><span class="line">    person = models.ForeignKey(Person, on_delete=models.CASCADE)</span><br><span class="line">    //邀请者</span><br><span class="line">    inviter = models.ForeignKey(</span><br><span class="line">        Person,</span><br><span class="line">        on_delete=models.CASCADE,</span><br><span class="line">        related_name=&quot;membership_invites&quot;,</span><br><span class="line">    )</span><br><span class="line">    invite_reason = models.CharField(max_length=64)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;Membership有两个 foreign keys指向 Person (person and inviter), 这样会导致关系不清晰，Django不知道使用哪一个外键。 在这种情况下，你必须使用through_fields 明确指定Django 应该使用哪些外键，就像上面例子一样。<br>&emsp;&emsp;<strong>通俗的说，就是through_fields参数指定从中间表模型Membership中选择哪两个字段，作为关系连接字段。</strong></p>
+<blockquote>
+<p>模型的Meta选项</p>
+</blockquote>
+<ul>
+<li><a href="https://yiyibooks.cn/xx/Django_1.11.6/ref/models/options.html" target="_blank" rel="noopener">官方文档</a></li>
+<li>abstract = True：就表示模型是抽象基类，抽象模型本身不实际生成数据库表。</li>
+<li>verbose_name = “pizza”：对象的一个易于理解的名称</li>
+<li>unique_together = (“driver”, “restaurant”)：用来设置的不重复的字段组合,当unique_together的约束被违反时，模型校验期间会抛出ValidationError异常。</li>
+<li>ordering = [‘-order_date’]：对象默认的顺序</li>
+</ul>
+<blockquote>
+<p>model的Manager示例</p>
+</blockquote>
+<p>&emsp;&emsp;每个非抽象的Model 类必须给自己添加一个Manager实例。 Django 确保在你的模型类中至少有一个默认的Manager。 如果你没有添加自己的管理器，Django将添加一个属性objects。<br>&emsp;&emsp;<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/topics/db/managers.html#custom-managers" target="_blank" rel="noopener">自定义管理器</a></p>
+<blockquote>
+<p>验证对象 <a href="https://yiyibooks.cn/xx/Django_1.11.6/ref/models/instances.html#validating-objects" target="_blank" rel="noopener">官方文档</a></p>
+</blockquote>
+<p>&emsp;&emsp;验证一个模型涉及三个步骤：</p>
+<ul>
+<li>验证模型的字段 —— Model.clean_fields()</li>
+<li>验证模型的完整性 —— Model.clean()</li>
+<li>验证模型的唯一性 —— Model.validate_unique()</li>
+</ul>
+<p>&emsp;&emsp;当你调用模型的full_clean() 方法时，这三个方法都将执行。</p>
+<blockquote>
+<p>信号</p>
+</blockquote>
+<ol>
+<li>发出预先保存的信号。 发送pre_save信号，允许监听该信号的任何函数执行某些操作。</li>
+<li>预处理数据。 调用每个字段的pre_save()方法来执行所需的任何自动数据修改。 例如，日期/时间字段覆盖pre_save()来实现auto_now_add和auto_now。</li>
+<li>准备数据库的数据。 要求每个字段的get_db_prep_save()方法将其当前值提供给可写入数据库的数据类型。大多数字段不需要数据准备。 简单的数据类型，例如整数和字符串，是可以直接写入的Python 对象。 但是，复杂的数据类型通常需要一些改动。例如，DateField 字段使用Python 的 datetime 对象来保存数据。 数据库保存的不是datetime 对象，所以该字段的值必须转换成ISO兼容的日期字符串才能插入到数据库中。</li>
+<li>将数据插入数据库。 预处理的准备数据组成一个用于插入数据库的SQL语句。</li>
+<li>发出一个保存后的信号。 发送post_save信号，允许监听该信号的任何函数执行某些操作。</li>
+</ol>
+<blockquote>
+<p>现有字段更新</p>
+</blockquote>
+<p>&emsp;&emsp;有时候你需要在一个字段上执行简单的算法操作，例如增加或者减少当前值。 实现这点的简单方法是像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; product = Product.objects.get(name=&apos;Venezuelan Beaver Cheese&apos;)</span><br><span class="line">&gt;&gt;&gt; product.number_sold += 1</span><br><span class="line">&gt;&gt;&gt; product.save()</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;如果从数据库中读取的旧的number_sold 值为10，那么写回到数据库中的值将为11。<br>&emsp;&emsp;通过将更新基于原始字段的值而不是显式赋予一个新值，这个过程可以避免竞态条件而且更快。 Django提供F表达式用于这种类型的相对更新。 利用F表达式，前面的示例可以表示成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from django.db.models import F</span><br><span class="line">&gt;&gt;&gt; product = Product.objects.get(name=&apos;Venezuelan Beaver Cheese&apos;)</span><br><span class="line">&gt;&gt;&gt; product.number_sold = F(&apos;number_sold&apos;) + 1</span><br><span class="line">&gt;&gt;&gt; product.save()</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>指定要保存的字段</p>
+</blockquote>
+<p>&emsp;&emsp;如果传递给save() 的update_fields 关键字参数一个字段名称列表，那么将只有该列表中的字段会被更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">product.name = &apos;Name changed again&apos;</span><br><span class="line">product.save(update_fields=[&apos;name&apos;])</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>实例方法</p>
+</blockquote>
+<ul>
+<li>__str__() 方法返回模型的一个友好的、人类可读的形式。</li>
+<li>get_absolute_url() 方法告诉Django 如何计算对象的标准URL。</li>
+<li>get_FOO_display():对于每个具有choices 的字段，每个对象将具有一个get_FOO_display() 方法，其中FOO 为该字段的名称。 这个方法返回该字段对“人类可读”的值。</li>
+</ul>
+<blockquote>
+<p>QuerySet</p>
+</blockquote>
+<ul>
+<li>QuerySet何时求值<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/querysets.html#when-querysets-are-evaluated" target="_blank" rel="noopener">官方文档</a></li>
+<li>返回新的QuerySet的方法<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/querysets.html#methods-that-return-new-querysets" target="_blank" rel="noopener">官方文档</a></li>
+<li>不返回QuerySet的方法<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/querysets.html#methods-that-do-not-return-querysets" target="_blank" rel="noopener">官方文档</a></li>
+<li><p>聚合函数<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/querysets.html#aggregation-functions" target="_blank" rel="noopener">官方文档</a></p>
+</li>
+<li><p>exists()方法</p>
+</li>
+</ul>
+<p>&emsp;&emsp;如果你需要知道是否存在至少一条记录（而不需要真实的对象），使用 exists() 将更加高效。</p>
+<ul>
+<li>aggregate和annotate</li>
+</ul>
+<p>&emsp;&emsp;博客：<a href="https://blog.csdn.net/AyoCross/article/details/68951413" target="_blank" rel="noopener">django中聚合aggregate和annotate GROUP BY的使用方法</a><br>&emsp;&emsp;官方文档：<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/expressions.html#aggregate-expressions" target="_blank" rel="noopener">Aggregate()表达式</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/querysets.html#annotate" target="_blank" rel="noopener">annotate表达式</a></p>
+<ul>
+<li>order_by方法</li>
+</ul>
+<p>&emsp;&emsp; 升序是隐含的。 要随机订购，请使用”?”。</p>
+<ul>
+<li><p>values方法</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Blog.objects.filter(name__startswith=&apos;Beatles&apos;).values()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&emsp;&emsp;返回一个返回字典的QuerySet，而不是使用模型实例作为一个迭代。每个字典表示一个对象，键对应于模型对象的属性名称。</p>
+<ul>
+<li>value_list()方法</li>
+</ul>
+<p>&emsp;&emsp;与values() 类似，只是在迭代时返回的是元组而不是字典。</p>
+<blockquote>
+<p>Django的Q对象和F对象</p>
+</blockquote>
+<p>&emsp;&emsp;博客：<a href="https://blog.csdn.net/qq_33733970/article/details/78403455?locationNum=3&amp;fps=1" target="_blank" rel="noopener">Python3之Django Web框架F对象，Q对象</a><br>&emsp;&emsp;官方文档：<a href="https://yiyibooks.cn/__trs__/xx/Django_1.11.6/ref/models/expressions.html#f-expressions" target="_blank" rel="noopener">F()表达式</a></p>
+<blockquote>
+<p>抽象模型</p>
+</blockquote>
+<ul>
+<li><a href="http://www.liujiangblog.com/course/django/100" target="_blank" rel="noopener">刘江的个人博客</a></li>
+<li>多表继承(默认隐含一个OneToOneField来链接子类与父类)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Place(models.Model):</span><br><span class="line">    name = models.CharField(max_length=50)</span><br><span class="line">    address = models.CharField(max_length=80)</span><br><span class="line"></span><br><span class="line">class Restaurant(Place):</span><br><span class="line">    serves_hot_dogs = models.BooleanField(default=False)</span><br><span class="line">    serves_pizza = models.BooleanField(default=False)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Restaurant可以看做是Place的扩展,所以调用只能:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; p = Place.objects.get(id=12)</span><br><span class="line"># 如果p也是一个Restaurant对象，那么下面的调用可以获得该Restaurant对象。</span><br><span class="line">&gt;&gt;&gt; p.restaurant</span><br><span class="line">&lt;Restaurant: ...&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>在多表继承的情况下，由于父类和子类都在数据库内有物理存在的表，父类的Meta类会对子类造成不确定的影响，因此，Django在这种情况下关闭了子类继承父类的Meta功能。这一点和抽象基类的继承方式有所不同。</strong></p>
+<ul>
+<li>代理模型<br>&emsp;&emsp;只需要将Meta中proxy的值设为True。<br>&emsp;&emsp;可以在代理模型中改变默认的排序方式和默认的manager管理器等等，而不会对原始模型产生影响。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from django.db import models</span><br><span class="line"></span><br><span class="line">class Person(models.Model):</span><br><span class="line">    first_name = models.CharField(max_length=30)</span><br><span class="line">    last_name = models.CharField(max_length=30)</span><br><span class="line"></span><br><span class="line">class MyPerson(Person):</span><br><span class="line">    class Meta:</span><br><span class="line">        proxy = True</span><br><span class="line"></span><br><span class="line">    def do_something(self):</span><br><span class="line">        # ...</span><br><span class="line">        pass</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>字段查询</p>
+</blockquote>
+<p>&emsp;&emsp;字段查询其实就是filter()、exclude()和get()等方法的关键字参数。 其基本格式是：field__lookuptype=value，注意其中是双下划线。</p>
+</div><div class="tags"><a href="/tags/django/">django</a></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/2018/10/10/django-Oauth2.0协议探究/" class="pre">django-Oauth2.0协议探究</a><a href="/2018/10/01/django-Web框架本质探究/" class="next">django-Web框架本质探究</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#model梳理与难点剖析"><span class="toc-text">model梳理与难点剖析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python操作数据库"><span class="toc-text">Python操作数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字段选项和字段类型"><span class="toc-text">字段选项和字段类型</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/11/29/DRF-什么是RESTful API/">DRF-什么是RESTful API</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/21/爬虫-视频截图/">爬虫-视频截图</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/11/DRF-Mixins介绍/">DRF-Mixins介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/01/web-前端开发之HTML/">web-前端开发html</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/31/python-RabbitMQ 安装、基本示例、轮询机制/">python-RabbitMQ 安装、基本示例、轮询机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/31/RabbirMQ-win10环境下的安装/">RabbirMQ-win10环境下的安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/工具-ShareX+七牛云实现私有图床/">工具-ShareX+七牛云实现私有图床</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/python-事件驱动和IO介绍/">python-事件驱动和IO介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/python-协程/">python-协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/29/python-入门和基础/">python-入门和基础</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/django项目/" style="font-size: 15px;">django项目</a> <a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/django/" style="font-size: 15px;">django</a> <a href="/tags/Docker/" style="font-size: 15px;">Docker</a> <a href="/tags/RabbitMQ/" style="font-size: 15px;">RabbitMQ</a> <a href="/tags/Oauth2-0/" style="font-size: 15px;">Oauth2.0</a> <a href="/tags/文本编辑/" style="font-size: 15px;">文本编辑</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/DRF/" style="font-size: 15px;">DRF</a> <a href="/tags/Mxonline/" style="font-size: 15px;">Mxonline</a> <a href="/tags/工具/" style="font-size: 15px;">工具</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/xadmin/" style="font-size: 15px;">xadmin</a> <a href="/tags/笔记/" style="font-size: 15px;">笔记</a> <a href="/tags/项目部署/" style="font-size: 15px;">项目部署</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.tendcode.com/" title="Tendcode" target="_blank">Tendcode</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">Rearib.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7c7a5758117d8eb934731041ec33d337";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>

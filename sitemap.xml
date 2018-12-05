@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2018/09/01/django-%E5%9F%BA%E7%A1%80%E4%BB%8B%E7%BB%8D/</loc>
+    <loc>http://yoursite.com/2018/10/02/django-model%E6%A8%A1%E5%9E%8B%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</loc>
     
-    <lastmod>2018-12-04T01:09:31.283Z</lastmod>
+    <lastmod>2018-12-05T02:31:10.341Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/10/01/django-Web%E6%A1%86%E6%9E%B6%E6%9C%AC%E8%B4%A8%E6%8E%A2%E7%A9%B6/</loc>
+    
+    <lastmod>2018-12-04T06:37:10.597Z</lastmod>
     
   </url>
   
