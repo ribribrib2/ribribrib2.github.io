@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="个人的技术分享和生活点滴记录"><meta name="keywords" content="Rearib"><title>Python-文件 | Rearib的个人博客</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Python-文件</h1><a id="logo" href="/.">Rearib的个人博客</a><p class="description">一生温暖纯良，不舍爱与自由</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Arama"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Python-文件</h1><div class="post-meta"><a href="/2018/08/06/Python-文件/#comments" class="comment-count"></a><p><span class="date">Aug 06, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ul>
+<li>read() 读取文件所有内容</li>
+<li>readline() 只读取一行内容</li>
+<li>readlines() 把文章内容以换行符分割，并生成list格式（数据量大的时候不建议用）</li>
+<li>tell() 获取文件读取指针的位置</li>
+<li>seek() 移动文件读写指针到指定的位置</li>
+<li>flush() 手动刷新缓冲区，将缓冲区中的数据立刻写入文件，同时清空缓冲区</li>
+<li>with语句</li>
+<li>二进制操作</li>
+</ul>
+<p><strong>默认光标在起始的位置，read()读取完后，光标停留到文件末尾</strong></p>
+<h3 id="访问模式"><a href="#访问模式" class="headerlink" title="访问模式"></a>访问模式</h3><table>
+<thead>
+<tr>
+<th>访问模式</th>
+<th>说明</th>
+<th>指针位置</th>
+<th>文件存在</th>
+<th>文件不存在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>只读</td>
+<td>开头</td>
+<td>从头读取内容</td>
+<td>报错</td>
+</tr>
+<tr>
+<td>w</td>
+<td>只写</td>
+<td>开头</td>
+<td>擦除写入新内容</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>a</td>
+<td>追加</td>
+<td>结尾</td>
+<td>结尾追加新内容</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>rb</td>
+<td>二进制格式只读</td>
+<td>开头</td>
+<td>从头读取内容</td>
+<td>报错</td>
+</tr>
+<tr>
+<td>wb</td>
+<td>二进制格式只写</td>
+<td>开头</td>
+<td>擦除写入新内容</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>ab</td>
+<td>二进制格式追加</td>
+<td>结尾</td>
+<td>结尾追加新内容</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>读写方式打开</td>
+<td>开头</td>
+<td>从头读或覆盖写</td>
+<td>报错</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>读写方式打开</td>
+<td>开头</td>
+<td>清空之前的内容</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>读写方式打开</td>
+<td>结尾</td>
+<td>结尾追加新内容, 读取返回空</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td>二进制格式读写</td>
+<td>开头</td>
+<td>从头读或覆盖写</td>
+<td>报错</td>
+</tr>
+<tr>
+<td>wb+</td>
+<td>二进制格式读写</td>
+<td>开头</td>
+<td>清空之前的内容</td>
+<td>创建新文件写入新内容</td>
+</tr>
+<tr>
+<td>ab+</td>
+<td>二进制格式读写</td>
+<td>结尾</td>
+<td>结尾追加新内容, 读取返回空</td>
+<td>创建新文件写入新内容</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if os.path.exists(File):</span><br><span class="line">    outFile=open(File, &apos;r+&apos;) # 如果文件存在追加</span><br><span class="line">else:</span><br><span class="line">    outFile=open(File, &apos;w+&apos;) # 如果不存在创建</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/Python/">Python</a></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/2018/08/11/linux-Linux基础知识/" class="pre">linux-Linux基础知识</a><a href="/2018/06/21/Tool-ShareX+七牛云实现私有图床/" class="next">工具-ShareX+七牛云实现私有图床</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件"><span class="toc-text">文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#访问模式"><span class="toc-text">访问模式</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/Python-函数/">python-函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/05/Django-对cookie、session、token、jwt的理解/">Django-对cookie、session、token、jwt的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/04/Django-中间件MiddleWare/">Django-中间件MiddleWare</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/02/Django-model模型知识点总结/">Django-model模型知识点总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/01/Django-Web框架本质探究/">Django-Web框架本质探究</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/21/Python-队列与生产者消费者模式/">python-队列与生产者消费者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/21/Python-RabbitMQ 安装、基本示例、轮询机制/">python-RabbitMQ 安装、基本示例、轮询机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/18/Python-事件驱动和IO介绍/">python-事件驱动和IO介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/17/Python-协程/">python-协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/Python-多进程/">python-多进程</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/文本编辑/" style="font-size: 15px;">文本编辑</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Tool/" style="font-size: 15px;">Tool</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.tendcode.com/" title="Tendcode" target="_blank">Tendcode</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">Rearib.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7c7a5758117d8eb934731041ec33d337";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>

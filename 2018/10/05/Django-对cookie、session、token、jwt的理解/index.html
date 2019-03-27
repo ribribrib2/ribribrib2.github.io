@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="个人的技术分享和生活点滴记录"><meta name="keywords" content="Rearib"><title>Django-对cookie、session、token、jwt的理解 | Rearib的个人博客</title><link rel="stylesheet" type="text/css" href="//fonts.neworld.org/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Django-对cookie、session、token、jwt的理解</h1><a id="logo" href="/.">Rearib的个人博客</a><p class="description">一生温暖纯良，不舍爱与自由</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Arama"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">Django-对cookie、session、token、jwt的理解</h1><div class="post-meta"><a href="/2018/10/05/Django-对cookie、session、token、jwt的理解/#comments" class="comment-count"></a><p><span class="date">Oct 05, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><p>&emsp;&emsp;HTTP协议是一个无状态的协议，也就是说每个请求都是一个独立的请求，请求与请求之间并无关系。但在实际的应用场景，这种方式并不能满足我们的需求。举个大家都喜欢用的例子，把商品加入购物车，单独考虑这个请求，服务端并不知道这个商品是谁的，应该加入谁的购物车？因此这个请求的上下文环境实际上应该包含用户的相关信息，在每次用户发出请求时把这一小部分额外信息，也做为请求的一部分，这样服务端就可以根据上下文中的信息，针对具体的用户进行操作。所以这几种技术的出现都是对HTTP协议的一个补充。使得我们可以用HTTP协议+状态管理构建一个的面向用户的WEB应用。<br><a id="more"></a></p>
+<h2 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h2><p>&emsp;&emsp;Session与Cookie最核心区别在于额外信息由谁来维护：</p>
+<ul>
+<li>利用cookie来实现会话管理时，用户的相关信息或者其他我们想要保持在每个请求中的信息，都是放在cookie中，<strong>而cookie是由客户端来保存</strong>，每当客户端发出新请求时，就会稍带上cookie，服务端会根据其中的信息进行操作。</li>
+<li>利用session来进行会话管理时，客户端实际上只存了一个由服务端发送的session_id，而由这个session_id，可以在服务端还原出所需要的所有状态信息，<strong>所以Session是由服务端来维护的</strong>。<h3 id="cookie是怎么工作的？"><a href="#cookie是怎么工作的？" class="headerlink" title="cookie是怎么工作的？"></a>cookie是怎么工作的？</h3>&emsp;&emsp;当网页要发http请求时，浏览器会先检查是否有相应的cookie，有则自动添加在request header中的cookie字段中。这些是浏览器自动帮我们做的，而且每一次http请求浏览器都会自动帮我们做。<blockquote>
+<p>Cookie的设置</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rep = HttpResponse(...) 或 rep ＝ render(request, ...)</span><br><span class="line">rep.set_cookie(&apos;username&apos;,&apos;admin&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>示例代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def login(request):</span><br><span class="line">    if request.method == &apos;GET&apos;:</span><br><span class="line">        return render(request,&apos;login.html&apos;)</span><br><span class="line"></span><br><span class="line">    if request.method == &apos;POST&apos;:</span><br><span class="line">        u = request.POST.get(&apos;username&apos;)</span><br><span class="line">        p = request.POST.get(&apos;pwd&apos;)</span><br><span class="line">        dic = user_info.get(u)</span><br><span class="line">        if not dic:</span><br><span class="line">            return render(request,&apos;login.html&apos;)</span><br><span class="line">        if dic[&apos;pwd&apos;] == p:</span><br><span class="line">            result = redirect(&apos;/index/&apos;)</span><br><span class="line">            result.set_cookie(&apos;username&apos;,u)</span><br><span class="line">            return result</span><br><span class="line">        else:</span><br><span class="line">            return render(request,&apos;login.html&apos;)</span><br><span class="line">def auth(func):</span><br><span class="line">    def inner(request,*args,**kwargs):</span><br><span class="line">        v = request.COOKIES.get(&apos;username&apos;)</span><br><span class="line">        if not v:</span><br><span class="line">            return redirect(&apos;/login/&apos;)</span><br><span class="line">        return func(request,*args,**kwargs)</span><br><span class="line">    return inner</span><br><span class="line">@auth</span><br><span class="line">def index(request):</span><br><span class="line">    v = request.COOKIES.get(&apos;username&apos;)</span><br><span class="line">    return render(request,&apos;index.html&apos;,&#123;&apos;current_user&apos;:v&#125;)</span><br></pre></td></tr></table></figure>
+<p>第一次打开浏览器，进入index，会自动跳转到login，因为没有cookie：<br><img src="http://qiniu.rearib.top/20181811/1344-H.png" alt=""><br>现输入用户名密码登录，通过上面的代码可得会在返回的时候set_cookie，以key-value的形式：<br><img src="http://qiniu.rearib.top/20181811/1347-E.png" alt=""><br>再将浏览器关闭，重新打开index，发现会跳转到login，是因为默认设置为浏览器关闭就会删除cookie。<br>现修改<code>result.set_cookie(&#39;username&#39;,&#39;u&#39; ,max_age=60)</code>，重新登录：<br><img src="http://qiniu.rearib.top/20181811/1355-q.png" alt=""><br>过期时间是一分钟之后，在此期间就算关闭浏览器再次打开cookie还是有效。</p>
+<ul>
+<li>cookie使用key-value的形式保存数据在客户端</li>
+<li><p>创建一个cookie的生命周期默认为-1，即max_age=-1，表示当浏览器关闭时cookie消失，如果设置max_age=0，表示通知浏览器删除cookie。</p>
+<blockquote>
+<p>cookie 参数</p>
+</blockquote>
+</li>
+<li><p><strong>key</strong>：键</p>
+</li>
+<li><strong>value=’’</strong>：值</li>
+<li><strong>max_age=None</strong>：超时时间（秒）</li>
+<li><strong>expires=None</strong>：超时时间(IE requires expires, so set it if hasn’t been already.) 单位日期</li>
+<li><strong>secure=False</strong>：当secure值为true时，cookie在HTTP中是无效，在HTTPS中才有效。</li>
+<li><strong>httponly=False</strong>：浏览器不允许脚本操作 document.cookie去更改cookie。一般情况下都应该设置这个为true，这样可以避免被xss攻击拿到cookie。</li>
+<li><strong>path</strong>：表示cookie所在的目录，默认为/，就是根目录。假如在同一个服务器上有目录如下：/test/,/test/cd/,/test/dd/，现设一个cookie1的path为/test/，cookie2的path为/test/cd/，那么test下的所有页面都可以访问到cookie1，而/test/和/test/dd/的子页面不能访问cookie2。这是因为cookie只能让其path路径下的页面访问。</li>
+<li><strong>domain</strong>：表示的是cookie所在的域，默认为请求的地址，如网址为<a href="http://www.test.com/test/test.aspx，那么domain默认为www.test.com。而跨域访问，如域A为t1.test.com，域B为t2.test.com，那么在域A生产一个令域A和域B都能访问的cookie就要将该cookie的domain设置为.test.com；如果要在域A生产一个令域A不能访问而域B能访问的cookie就要将该cookie的domain设置为t2.test.com。" target="_blank" rel="noopener">www.test.com/test/test.aspx，那么domain默认为www.test.com。而跨域访问，如域A为t1.test.com，域B为t2.test.com，那么在域A生产一个令域A和域B都能访问的cookie就要将该cookie的domain设置为.test.com；如果要在域A生产一个令域A不能访问而域B能访问的cookie就要将该cookie的domain设置为t2.test.com。</a></li>
+</ul>
+<blockquote>
+<p>利用cookie登录</p>
+</blockquote>
+<p>首先使用谷歌浏览器打开博客园登录，然后进入调试状态，查看cookie：<br><img src="http://qiniu.rearib.top/20181811/1446-w.png" alt=""><br>打开火狐浏览器，进入博客园，现在是未登录状态：<br><img src="http://qiniu.rearib.top/20181811/1448-1.png" alt=""><br>使用cookie Editor编辑cookie:<br><img src="http://qiniu.rearib.top/20181811/1449-S.png" alt=""><br>再重新刷新页面：<br><img src="http://qiniu.rearib.top/20181811/1450-S.png" alt=""></p>
+<blockquote>
+<p>cookie缺点</p>
+</blockquote>
+<ul>
+<li>cookie的长度和数量有限制</li>
+<li>cookie安全性不高，不适合存放敏感数据</li>
+<li>每次请求需要带上cookie信息，增加流量消耗</li>
+<li>Cookie具有不可跨域名性。Google也只能操作Google的Cookie，而不能操作Baidu的Cookie。</li>
+</ul>
+<h3 id="session是怎么工作的"><a href="#session是怎么工作的" class="headerlink" title="session是怎么工作的?"></a>session是怎么工作的?</h3><p>&emsp;&emsp;session的运作通过一个session_id来进行。session_id通常是存放在客户端的cookie中，当你下次访问时，cookie会带有这个字符串，然后浏览器就知道你是上次访问过的某某某，然后从服务器的存储中取出上次记录在你身上的数据。由于字符串是随机产生的，而且位数足够多，所以也不担心有人能够伪造。<br><img src="http://qiniu.rearib.top/20181811/1457-K.png" alt=""></p>
+<blockquote>
+<p>Django的session</p>
+</blockquote>
+<p>&emsp;&emsp;Django中默认支持Session，其内部提供了5种类型的Session供开发者使用：</p>
+<ul>
+<li>数据库（默认）</li>
+<li>缓存</li>
+<li>文件</li>
+<li>缓存+数据库</li>
+<li>加密cookie</li>
+</ul>
+<p>编辑MIDDLEWARE设置，并确保它包含<code>django.contrib.sessions.middleware.SessionMiddleware</code>，在中间件的process_request中获取request的cookie，其中<code>SESSION_COOKIE_NAME = &#39;sessionid&#39;</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def process_request(self, request):</span><br><span class="line">    session_key = request.COOKIES.get(settings.SESSION_COOKIE_NAME)</span><br><span class="line">    request.session = self.SessionStore(session_key)</span><br></pre></td></tr></table></figure></p>
+<p>在process_response中设置cookie：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">response.set_cookie(settings.SESSION_COOKIE_NAME,</span><br><span class="line">                    request.session.session_key, max_age=max_age,</span><br><span class="line">                    expires=expires, domain=settings.SESSION_COOKIE_DOMAIN,</span><br><span class="line">                    path=settings.SESSION_COOKIE_PATH,</span><br><span class="line">                    secure=settings.SESSION_COOKIE_SECURE or None,</span><br><span class="line">                    httponly=settings.SESSION_COOKIE_HTTPONLY or None,</span><br><span class="line">                    )</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>session的缺点</p>
+</blockquote>
+<p>&emsp;&emsp;session在一定的时间里，需要存放在服务端，因此当拥有大量用户时，也会大幅度降低服务端的性能。<br>&emsp;&emsp;当有多台机器时，如何共享session也会是一个问题，也就是说，用户第一个访问的时候是服务器A，而第二个请求被转发给了服务器B，那服务器B如何得知其状态。</p>
+<h2 id="Token验证"><a href="#Token验证" class="headerlink" title="Token验证"></a>Token验证</h2><p>&emsp;&emsp;API应该被设计成无状态的。这意味着没有登陆，注销的方法，也没有sessions，API的设计者同样也不能依赖Cookie，因为不能保证这些request是由浏览器所发出的。自然，我们需要一个新的机制。所以提出了Token验证。</p>
+<blockquote>
+<p>流程</p>
+</blockquote>
+<ul>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</li>
+<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
+<li>如果用户退出登录，token会在客户端销毁，这一步与服务器无关</li>
+</ul>
+<blockquote>
+<p>token与session及cookie的关系</p>
+</blockquote>
+<p>&emsp;&emsp;借助session识别用户是否登录的方式，<strong>客户端cookie中用于追踪session的那个值（sessionId）可被称为token</strong>，这个token通常是用户名+密码认证成功后所得到的。由此可见session与cookie跟token产生联系，是因为token的概念恰好有一个用session+cookie实现的场景。</p>
+<p>&emsp;&emsp;<strong>token就是token，只是在特定场景中与session、cookie产生了联系，因此我们完全可以选择不借助session与cookie而使用token，比如在HTTP请求头中使用x-token头部传输token的值，又或者是在URL中携带token，这两者在如今都是较常见的做法。</strong></p>
+<ul>
+<li>session的传递一般都是通过cookie来传递的，或者url重写的方式；而token在服务器是可以不需要存储用户的信息的，而token的传递方式也不限于cookie传递，当然，token也是可以保存起来的。</li>
+<li>浏览器第一次访问服务器，根据传过来的唯一标识userId，服务端会通过一些算法，如常用的HMAC-SHA256算法，然后加一个密钥，生成一个token，然后通过BASE64编码一下之后将这个token发送给客户端；客户端将token保存起来，下次请求时，带着token，服务器收到请求后，然后会用相同的算法和密钥去验证token，如果通过，执行业务操作，不通过，返回不通过信息。</li>
+<li>session一般翻译为会话，而token更多的时候是翻译为令牌，session是空间换时间，而token是时间换空间。</li>
+</ul>
+<blockquote>
+<p>drf的token</p>
+</blockquote>
+<p>&emsp;&emsp;关于drf如何使用token参考文章<a href="http://www.cnblogs.com/derek1184405959/p/8813641.html" target="_blank" rel="noopener">Django REST framework+Vue 打造生鲜超市（六）</a></p>
+<p>1.访问<code>url(r&#39;^api-token-auth/&#39;, views.obtain_auth_token)</code>,<br>传过来的是username和password,会生成一个token返回回去</p>
+<p>2.访问其他网页在header中携带token就可以获取到user<br><code>Authorization:Token 89bd7209bf9d5c4656a4f24bb120a1e3b9587ccd</code></p>
+<p>drf的token缺点</p>
+<ul>
+<li>保存在数据库中，如果是一个分布式的系统，就非常麻烦</li>
+<li>token永久有效，没有过期时间。</li>
+</ul>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><p>&emsp;&emsp;本质上来说 JWT 也是 token，它是 JSON 结构的 token，由三部分组成：1) header 2) payload 3) signature 。<br>&emsp;&emsp;JWT 的目的不是为了隐藏或者保密数据，而是为了确保数据确实来自被授权的人创建的（不被篡改） </p>
+<ul>
+<li>JWT和Token区别:<br>JWT经过加密不易修改,而且可以设置过期时间,比如7天,7天后携带该JWT过来会要求重新登录</li>
+</ul>
+<p>参考文章:</p>
+<ul>
+<li><a href="https://www.cnblogs.com/andy-zhou/p/5360107.html" target="_blank" rel="noopener">理解Cookie和Session机制</a></li>
+<li><a href="https://www.cnblogs.com/xiaozhang2014/p/7750200.html" target="_blank" rel="noopener">Session,Token相关区别</a></li>
+<li><a href="https://blog.csdn.net/tobetheender/article/details/52485948" target="_blank" rel="noopener">Token ，Cookie和Session的区别</a></li>
+<li><a href="http://lion1ou.win/2017/01/18/" target="_blank" rel="noopener">前后端分离之JWT用户认证</a></li>
+<li><a href="https://segmentfault.com/a/1190000005783306" target="_blank" rel="noopener">Node 实作jwt 验证API</a></li>
+</ul>
+</div><div class="tags"><a href="/tags/Django/">Django</a></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/2018/11/07/Python-函数/" class="pre">python-函数</a><a href="/2018/10/04/Django-中间件MiddleWare/" class="next">Django-中间件MiddleWare</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie和Session"><span class="toc-text">Cookie和Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie是怎么工作的？"><span class="toc-text">cookie是怎么工作的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#session是怎么工作的"><span class="toc-text">session是怎么工作的?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Token验证"><span class="toc-text">Token验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JWT"><span class="toc-text">JWT</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/11/07/Python-函数/">python-函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/05/Django-对cookie、session、token、jwt的理解/">Django-对cookie、session、token、jwt的理解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/04/Django-中间件MiddleWare/">Django-中间件MiddleWare</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/02/Django-model模型知识点总结/">Django-model模型知识点总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/01/Django-Web框架本质探究/">Django-Web框架本质探究</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/21/Python-队列与生产者消费者模式/">python-队列与生产者消费者模式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/21/Python-RabbitMQ 安装、基本示例、轮询机制/">python-RabbitMQ 安装、基本示例、轮询机制</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/18/Python-事件驱动和IO介绍/">python-事件驱动和IO介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/17/Python-协程/">python-协程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/Python-多进程/">python-多进程</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"><a href="/tags/Django/" style="font-size: 15px;">Django</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/文本编辑/" style="font-size: 15px;">文本编辑</a> <a href="/tags/Markdown/" style="font-size: 15px;">Markdown</a> <a href="/tags/Tool/" style="font-size: 15px;">Tool</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.tendcode.com/" title="Tendcode" target="_blank">Tendcode</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">Rearib.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7c7a5758117d8eb934731041ec33d337";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>
